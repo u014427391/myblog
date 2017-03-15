@@ -40,11 +40,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div>
   <nav id="topnav" class="f_r">
     <ul>
-      <a href="index.html" target="_blank">首页</a>
-      <a href="news.html" target="_blank">关于我</a> 
-      <a href="p.html" target="_blank">文章</a> 
-      <a href="a.html" target="_blank">在线工具</a> 
-      <a href="toLogin.action" target="_blank">进入后台</a>
+      <a href="toblog.do">首页</a>
+      <a href="news.html">关于我</a> 
+      <a href="p.html">文章</a> 
+      <a href="a.html">在线工具</a> 
+      <a href="login.do" target="_blank">进入后台</a>
     </ul>
     <script src="js/nav.js"></script> 
   </nav>
@@ -290,7 +290,7 @@ window.onload = function ()
   <!--r_box end --> 
 </article>
 <footer>
-  <p class="ft-copyright">Nicky博客 Design by DanceSmile</p>
+  <p class="ft-copyright">Nicky's blog Design by DanceSmile</p>
   <div id="tbox"> <a id="togbook" href="/"></a> <a id="gotop" href="javascript:void(0)"></a> </div>
 </footer>
 </body>

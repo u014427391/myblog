@@ -1,7 +1,7 @@
 package net.myblog.utils;
 
 /**
- * @description 项目的根据类
+ * @description 项目的工具类
  * @author Nicky
  * @date 2017年3月13日
  */
@@ -13,7 +13,7 @@ public class Tools {
 	 * @return
 	 */
 	public static boolean isNotEmpty(String str){
-		return str != null || !"".equals(str) || ! "null".equals(str);
+		return str != null && !"".equals(str) ;
 	}
 	
 	/**
@@ -22,7 +22,7 @@ public class Tools {
 	 * @return
 	 */
 	public static boolean isEmpty(String str){
-		return str == null || "".equals(str) || "null".equals(str);
+		return str == null || "".equals(str) ;
 	}
 	
 	

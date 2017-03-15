@@ -147,11 +147,11 @@
 		<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 			<property name="securityManager" ref="securityManager" />
 			
-			<property name="loginUrl" value="/login_toLogin" />
+			<property name="loginUrl" value="/login" />
 			
-			<property name="successUrl" value="/main/index" />
+			<property name="successUrl" value="/admin/index" />
 			
-			<property name="unauthorizedUrl" value="/login_toLogin" />
+			<property name="unauthorizedUrl" value="/login" />
 			
 			<property name="filterChainDefinitions">
 				<value>
@@ -159,8 +159,9 @@
 				/upload/**			    	= anon
 				/plugins/** 				= anon
 	           	/code.do 					= anon
-	           	/login_toLogin.do    	 	= anon
-	           	/toBlog.do					= anon
+	           	/login.do    	 	        = anon
+	           	/logincheck.do				= anon
+	           	/toblog.do					= anon
 	           	/**							= authc
 				</value>
 			</property>
