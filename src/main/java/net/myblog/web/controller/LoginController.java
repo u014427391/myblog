@@ -104,7 +104,7 @@ public class LoginController extends BaseController{
 	 */
 	@RequestMapping(value="/logincheck", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public Object loginCheck(HttpServletRequest request)throws AuthenticationException{
+	public String loginCheck(HttpServletRequest request)throws AuthenticationException{
 		JSONObject obj = new JSONObject();
 		String errInfo = "";//错误信息
 		String logindata[] = request.getParameter("LOGINDATA").split(",");
@@ -113,11 +113,10 @@ public class LoginController extends BaseController{
 			Subject  currentUser = SecurityUtils.getSubject();
 			Session session = currentUser.getSession();
 			String codeSession = (String)session.getAttribute(Constants.SESSION_SECURITY_CODE);
-			System.out.println("codeSession:"+codeSession);
 			System.out.println("username:"+logindata[0]);
 			String code = logindata[2]; 
 			/**检测页面验证码是否为空，调用工具类检测**/
-			if(code == null || "".equals(code)){
+			if(Tools.isEmpty(code)){
 				errInfo = "nullcode";
 			}else{
 				String username = logindata[0];
@@ -127,7 +126,7 @@ public class LoginController extends BaseController{
 					//Shiro框架sha加密
 					String passwordsha = new SimpleHash("SHA-1",username,password).toString();
 					System.out.println("sha密码:"+passwordsha);
-					User user = userService.findByUsername(username);
+					User user = userService.doLoginCheck(username,passwordsha);
 					if(user != null){
 						//Shiro添加会话
 						System.out.println("用户名1:"+username);
@@ -156,8 +155,8 @@ public class LoginController extends BaseController{
 				}
 			}
 		}
-		obj.put("result", "success");
-		return obj;
+		obj.put("result", errInfo);
+		return obj.toString();
 	}
 		
 	/**
@@ -168,15 +167,15 @@ public class LoginController extends BaseController{
 	@RequestMapping(value="/admin/index")
 	public ModelAndView toMain() throws AuthenticationException{
 		ModelAndView mv = this.getModelAndView();
-		Subject currentUser = SecurityUtils.getSubject();
-		Session session = currentUser.getSession();
-		User user = (User)session.getAttribute(Constants.SESSION_USER);
-		if(user != null){
-			
-		}else{
-			//会话失效，返回登录界面
-			//mv.setViewName("admin/login");
-		}
+//		Subject currentUser = SecurityUtils.getSubject();
+//		Session session = currentUser.getSession();
+//		User user = (User)session.getAttribute(Constants.SESSION_USER);
+//		if(user != null){
+//			
+//		}else{
+//			//会话失效，返回登录界面
+//			//mv.setViewName("admin/login");
+//		}
 		mv.setViewName("admin/index");
 		return mv;
 	}

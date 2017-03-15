@@ -216,7 +216,7 @@
 							alert('success');
 							saveCookie();//保存Cookie
 							window.location.href="admin/index";
-						}else if("nullcode" == data.result){
+						}else if("uerror" == data.result){
 							$("#username").tips({
 								side : 1,
 								msg : "用户名或密码有误",

@@ -18,19 +18,13 @@
 <body>
 	<div id="cc" class="easyui-layout" style="width: 1000px; height: 600px; margin: 0 auto;">
 		<div data-options="region:'north',split:true" style="height: 80px;">
-			<a href="/myweb/api/user/logout" id="logout" class="easyui-linkbutton" plain="true" iconCls="icon-back">退出</a>
+			<a href="logout.do" id="logout" class="easyui-linkbutton" plain="true" iconCls="icon-back">退出</a>
 
 		</div>
 		<div id="west" data-options="region:'west',title:'导航',split:true" style="width: 200px;">
 			<div class="easyui-accordion">
 				<div title="系统管理" data-options="selected:true">
 					<ul>
-						<!--<c:forEach items="${menus}" var="res">
-							<c:if test="${startsWith(res.url,'/')}">
-								<c:set target="${res}" property="url" value="${substringAfter(res.url,'/')}" />
-							</c:if>
-								<li><a href="${res.url}">${res.name}</a></li>
-						</c:forEach>-->
 					</ul>
 				</div>
 			</div>
