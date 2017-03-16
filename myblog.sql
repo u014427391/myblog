@@ -22,9 +22,9 @@ DROP TABLE IF EXISTS `article`;
 
 CREATE TABLE `article` (
   `articleId` int(11) NOT NULL AUTO_INCREMENT COMMENT '日志自增Id',
-  `articleName` varchar(100) CHARACTER SET latin1 NOT NULL COMMENT '文章名称',
+  `articleName` varchar(100) NOT NULL COMMENT '文章名称',
   `articleTime` date NOT NULL COMMENT '发布时间',
-  `articleContent` text CHARACTER SET latin1 NOT NULL COMMENT '文章内容',
+  `articleContent` text NOT NULL COMMENT '文章内容',
   `articleClick` int(11) DEFAULT NULL COMMENT '查看人数',
   `articleSupport` int(11) DEFAULT NULL COMMENT '是否博主推荐。0为否；1为是',
   `articleUp` int(11) DEFAULT NULL COMMENT '是否置顶。0为；1为是',
@@ -45,7 +45,7 @@ CREATE TABLE `article_comment` (
   `postId` int(11) NOT NULL COMMENT '评论者Id',
   `userId` int(11) NOT NULL COMMENT '博主Id',
   `articleId` int(11) NOT NULL COMMENT '文章Id',
-  `content` varchar(1000) CHARACTER SET latin1 NOT NULL COMMENT '评论内容',
+  `content` varchar(1000) NOT NULL COMMENT '评论内容',
   `responseId` int(11) NOT NULL COMMENT '回复Id',
   `time` date NOT NULL COMMENT '评论时间',
   PRIMARY KEY (`commentId`)
@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `article_response`;
 CREATE TABLE `article_response` (
   `responseId` int(11) NOT NULL AUTO_INCREMENT COMMENT '回复Id',
   `userId` int(11) NOT NULL COMMENT '用户Id',
-  `content` varchar(1000) CHARACTER SET latin1 NOT NULL COMMENT '回复内容',
+  `content` varchar(1000) NOT NULL COMMENT '回复内容',
   `time` date NOT NULL COMMENT '回复时间',
   PRIMARY KEY (`responseId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -76,7 +76,7 @@ CREATE TABLE `article_sort` (
   `name` varchar(100) NOT NULL COMMENT '栏目名称',
   `userId` int(11) NOT NULL COMMENT '用户Id',
   PRIMARY KEY (`typeId`,`name`,`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `article_sort` */
 
@@ -90,10 +90,12 @@ CREATE TABLE `friendly_link` (
   `linkId` int(11) NOT NULL AUTO_INCREMENT COMMENT '友情链接Id',
   `linkName` varchar(100) NOT NULL COMMENT '链接名称',
   `linkUrl` varchar(100) NOT NULL COMMENT '链接url',
-  PRIMARY KEY (`linkId`,`linkName`,`linkUrl`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`linkId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `friendly_link` */
+
+insert  into `friendly_link`(`linkId`,`linkName`,`linkUrl`) values (1,'Nicky\'s blog','https://u014427391.github.io/'),(2,'Android开发技术周报','http://androidweekly.cn/');
 
 /*Table structure for table `secret_message` */
 
@@ -219,12 +221,14 @@ CREATE TABLE `sys_user` (
   `loginIp` varchar(30) DEFAULT NULL COMMENT '登录ip',
   `imageUrl` varchar(100) DEFAULT NULL COMMENT '头像图片路径',
   `regTime` date NOT NULL COMMENT '注册时间',
-  `accountStatus` int(11) DEFAULT NULL COMMENT '账号状态',
+  `locked` tinyint(1) DEFAULT NULL COMMENT '账号是否被锁定',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_u_1` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_user` */
+
+insert  into `sys_user`(`id`,`username`,`password`,`phone`,`sex`,`email`,`mark`,`rank`,`lastLogin`,`loginIp`,`imageUrl`,`regTime`,`locked`) values (1,'admin','28dca2a7b33b7413ad3bce1d58c26dd679c799f1',1552323312,'男','313222@foxmail.com','超级管理员','admin','2016-12-12','127.0.0.1','/static/images/','2017-03-15',1);
 
 /*Table structure for table `sys_user_role` */
 
@@ -262,10 +266,13 @@ CREATE TABLE `web_ad` (
   `adId` int(11) NOT NULL AUTO_INCREMENT COMMENT '广告Id',
   `adTitle` varchar(100) NOT NULL COMMENT '广告标题',
   `adImage` varchar(100) NOT NULL COMMENT '图片路径',
+  `adDesc` varchar(100) DEFAULT NULL COMMENT '广告描述',
   PRIMARY KEY (`adId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `web_ad` */
+
+insert  into `web_ad`(`adId`,`adTitle`,`adImage`,`adDesc`) values (1,'测试1','static/images/a1.jpg','add your description here'),(2,'测试2','static/images/a2.jpg','add your description here'),(3,'测试3','static/images/a3.jpg','add your description here'),(4,'测试4','static/images/a4.jpg','add your description here');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

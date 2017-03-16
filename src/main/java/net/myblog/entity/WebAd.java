@@ -10,8 +10,8 @@ import javax.persistence.Table;
  * 网站广告信息实体类
  * @author Nicky
  */
-//@Table(name="web_ad")
-@Entity(name="web_ad")
+@Table(name="web_ad")
+@Entity
 public class WebAd {
 
 	/**

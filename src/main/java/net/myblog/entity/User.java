@@ -20,8 +20,8 @@ import javax.persistence.TemporalType;
  * 用户信息的实体类
  * @author Nicky
  */
-//@Table(name="sys_user")
-@Entity(name="sys_user")
+@Entity
+@Table(name="sys_user")
 public class User {
 
 	/**
@@ -83,11 +83,6 @@ public class User {
 	 * 注册时间
 	 */
 	private Date regTime;
-	
-	/**
-	 * 账号状态
-	 */
-	private int accountStatus;
 	
 	/**
 	 * 账号是否被锁定
@@ -205,14 +200,6 @@ public class User {
 		this.regTime = regTime;
 	}
 
-	public int getAccountStatus() {
-		return accountStatus;
-	}
-
-	public void setAccountStatus(int accountStatus) {
-		this.accountStatus = accountStatus;
-	}
-	
 	 public Boolean getLocked() {
 		return locked;
 	}

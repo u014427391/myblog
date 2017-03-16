@@ -13,8 +13,8 @@ import javax.persistence.TemporalType;
  * 文章评论信息的实体类
  * @author Nicky
  */
-//@Table(name="article_comment")
-@Entity(name="article_comment")
+@Table(name="article_comment")
+@Entity
 public class ArticleComment {
 
 	/**

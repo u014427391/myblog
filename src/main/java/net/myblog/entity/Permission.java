@@ -14,13 +14,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * @description 权限操作的Vo类
  * @author Nicky
  * @date 2017年3月6日
  */
-@Entity(name="sys_permission")
+@Table(name="sys_permission")
+@Entity
 public class Permission implements Serializable {
 
 	

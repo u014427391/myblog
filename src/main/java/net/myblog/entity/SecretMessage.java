@@ -10,8 +10,8 @@ import javax.persistence.Table;
  * 私信信息的实体类
  * @author Nicky
  */
-//@Table(name="secret_message")
-@Entity(name="secret_message")
+@Table(name="secret_message")
+@Entity
 public class SecretMessage {
 
 	/**

@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Entity implementation class for Entity: Operation
  *
  */
-@Entity(name="sys_operation")
+@Table(name="sys_operation")
+@Entity
 public class Operation implements Serializable {
 
 	

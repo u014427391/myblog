@@ -11,8 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-//@Table(name="sys_role")
-@Entity(name="sys_role")
+@Table(name="sys_role")
+@Entity
 public class Role {
 
 	/**

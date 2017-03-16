@@ -10,8 +10,8 @@ import javax.persistence.Table;
  * 用户关注
  * @author Nicky
  */
-//@Table(name="user_attention")
-@Entity(name="user_attention")
+@Table(name="user_attention")
+@Entity
 public class UserAttention {
 
 	/**

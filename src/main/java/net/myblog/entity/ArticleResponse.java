@@ -14,8 +14,8 @@ import javax.persistence.TemporalType;
  * 文章评论回复
  * @author Nicky
  */
-//@Table(name="article_response")
-@Entity(name="article_response")
+@Table(name="article_response")
+@Entity
 public class ArticleResponse {
 
 	/**

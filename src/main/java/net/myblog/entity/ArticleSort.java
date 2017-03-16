@@ -10,8 +10,8 @@ import javax.persistence.Table;
  * 文章栏目信息的实体类
  * @author Nicky
  */
-//@Table(name="article_sort")
-@Entity(name="article_sort")
+@Table(name="article_sort")
+@Entity
 public class ArticleSort {
 
 	/**

@@ -10,8 +10,8 @@ import javax.persistence.Table;
  * 友情链接信息的实体类
  * @author Nicky
  */
-//@Table(name="friendly_link")
-@Entity(name="friendly_link")
+@Table(name="friendly_link")
+@Entity
 public class FriendlyLink {
 
 	/**

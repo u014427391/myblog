@@ -8,7 +8,8 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Menu
  *
  */
-@Entity(name="sys_menu")
+@Table(name="sys_menu")
+@Entity
 public class Menu implements Serializable {
 
 	

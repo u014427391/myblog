@@ -189,13 +189,6 @@
 				return false;
 			}
 
-			$("#loginbox").tips({
-				side : 1,
-				msg : '正在登录 , 请稍后 ...',
-				bg : '#68B500',
-				time : 10
-			});
-
 			return true;
 		}
 		
@@ -213,8 +206,13 @@
 					cache: false,//关闭缓存
 					success: function(data){//响应成功
 						if("success" == data.result){
-							alert('success');
 							saveCookie();//保存Cookie
+							$("#loginbox").tips({
+								side : 1,
+								msg : '正在登录 , 请稍后 ...',
+								bg : '#68B500',
+								time : 10
+							});
 							window.location.href="admin/index";
 						}else if("uerror" == data.result){
 							$("#username").tips({
@@ -232,6 +230,8 @@
 								time : 15
 							});
 							$("#code").focus();
+						}else if("locked" == data.result){
+							alert('您的账号被锁定了，呜呜');
 						}else{
 							$("#username").tips({
 								side : 1,

@@ -97,7 +97,8 @@ public class LoginController extends BaseController{
 	}
 	
 	/**
-	 * 基于Shiro框架的登录验证
+	 * 基于Shiro框架的登录验证,页面发送JSON请求数据，
+	 * 服务端进行登录验证之后，返回Json响应数据，"success"表示验证成功
 	 * @param request
 	 * @return
 	 * @throws Exception
@@ -113,7 +114,6 @@ public class LoginController extends BaseController{
 			Subject  currentUser = SecurityUtils.getSubject();
 			Session session = currentUser.getSession();
 			String codeSession = (String)session.getAttribute(Constants.SESSION_SECURITY_CODE);
-			System.out.println("username:"+logindata[0]);
 			String code = logindata[2]; 
 			/**检测页面验证码是否为空，调用工具类检测**/
 			if(Tools.isEmpty(code)){
@@ -121,33 +121,33 @@ public class LoginController extends BaseController{
 			}else{
 				String username = logindata[0];
 				String password = logindata[1];
-				System.out.println("password:"+password);
 				if(Tools.isNotEmpty(codeSession) && codeSession.equalsIgnoreCase(code)){
-					//Shiro框架sha加密
+					//Shiro框架SHA加密
 					String passwordsha = new SimpleHash("SHA-1",username,password).toString();
-					System.out.println("sha密码:"+passwordsha);
+					//检测用户名和密码是否正确
 					User user = userService.doLoginCheck(username,passwordsha);
 					if(user != null){
-						//Shiro添加会话
-						System.out.println("用户名1:"+username);
-						session.setAttribute("username", username);
-						session.setAttribute(Constants.SESSION_USER, user);
-						//删除验证码Session
-						session.removeAttribute(Constants.SESSION_SECURITY_CODE);
-						//保存登录IP
-						getRemortIP(username);
-						/**Shiro加入身份验证**/
-						Subject subject = SecurityUtils.getSubject();
-						UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-						subject.login(token);
+						if(Boolean.TRUE.equals(user.getLocked())){
+							errInfo = "locked";
+						}else{
+							//Shiro添加会话
+							session.setAttribute("username", username);
+							session.setAttribute(Constants.SESSION_USER, user);
+							//删除验证码Session
+							session.removeAttribute(Constants.SESSION_SECURITY_CODE);
+							//保存登录IP
+							getRemortIP(username);
+							/**Shiro加入身份验证**/
+							Subject subject = SecurityUtils.getSubject();
+							UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+							subject.login(token);
+						}
 					}else{
 						//账号或者密码错误
 						errInfo = "uerror";
-						System.out.println("测试："+errInfo);
 					}
 					if(Tools.isEmpty(errInfo)){
 						errInfo = "success";
-						System.out.println("success");
 					}
 				}else{
 					//缺少参数
@@ -167,15 +167,15 @@ public class LoginController extends BaseController{
 	@RequestMapping(value="/admin/index")
 	public ModelAndView toMain() throws AuthenticationException{
 		ModelAndView mv = this.getModelAndView();
-//		Subject currentUser = SecurityUtils.getSubject();
-//		Session session = currentUser.getSession();
-//		User user = (User)session.getAttribute(Constants.SESSION_USER);
-//		if(user != null){
-//			
-//		}else{
-//			//会话失效，返回登录界面
-//			//mv.setViewName("admin/login");
-//		}
+		Subject currentUser = SecurityUtils.getSubject();
+		Session session = currentUser.getSession();
+		User user = (User)session.getAttribute(Constants.SESSION_USER);
+		if(user != null){
+			
+		}else{
+			//会话失效，返回登录界面
+			//mv.setViewName("admin/login");
+		}
 		mv.setViewName("admin/index");
 		return mv;
 	}
