@@ -16,7 +16,7 @@ public interface FriendlyLinkRepository extends JpaRepository<FriendlyLink,Integ
 	 * 查询所有的友情连接信息
 	 */
 	@Query("FROM FriendlyLink")
-	//@QueryHints({@QueryHint(name=org.hibernate.ejb.QueryHints.HINT_CACHEABLE,value="true")})
+	@QueryHints({@QueryHint(name=org.hibernate.ejb.QueryHints.HINT_CACHEABLE,value="true")})
 	public List<FriendlyLink> findAll();
 	
 }

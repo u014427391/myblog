@@ -65,8 +65,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
 		String username = (String)pc.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-//	    authorizationInfo.setRoles(userService.getRoles(username));
-//	    authorizationInfo.setStringPermissions(userService.getPermissions(username));
+	    authorizationInfo.setRoles(userService.getRoles(username));
+	    authorizationInfo.setStringPermissions(userService.getPermissions(username));
 		System.out.println("Shiro授权");
 	    return authorizationInfo;
 	}

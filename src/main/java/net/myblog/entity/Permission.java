@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -39,7 +40,7 @@ public class Permission implements Serializable {
 		super();
 	}   
 	
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	public int getId() {
 		return this.id;
@@ -48,7 +49,8 @@ public class Permission implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	@Column(length=100)
 	public String getDesc() {
 		return this.desc;
 	}
@@ -56,6 +58,8 @@ public class Permission implements Serializable {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}   
+	
+	@Column(length=100)
 	public String getName() {
 		return this.name;
 	}
@@ -65,7 +69,7 @@ public class Permission implements Serializable {
 	}
 
 	@OneToOne(targetEntity=Menu.class,cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)
-	//@JoinColumn(name="menuId",referencedColumnName="menuId")
+	@JoinColumn(name="menuId",referencedColumnName="menuId")
 	public Menu getMenu() {
 		return menu;
 	}
@@ -75,7 +79,7 @@ public class Permission implements Serializable {
 	}
 
 	@ManyToMany(targetEntity=Operation.class,cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
-	//@JoinTable(name="sys_permission_operation",joinColumns=@JoinColumn(name="permissionId",referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="operationId",referencedColumnName="id"))
+	@JoinTable(name="sys_permission_operation",joinColumns=@JoinColumn(name="permissionId",referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="operationId",referencedColumnName="id"))
 	public Set<Operation> getOperations() {
 		return operations;
 	}

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: myblog
+Bundle-SymbolicName: myblog
+Bundle-Version: 1.0.0.qualifier
+Export-Package: net.myblog.biz,
+ net.myblog.biz.aop,
+ net.myblog.core,
+ net.myblog.core.logger,
+ net.myblog.core.security,
+ net.myblog.entity,
+ net.myblog.repository,
+ net.myblog.service,
+ net.myblog.utils,
+ net.myblog.web.controller

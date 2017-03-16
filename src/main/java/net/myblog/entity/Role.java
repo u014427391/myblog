@@ -1,19 +1,29 @@
 package net.myblog.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+/**
+ * @description 角色信息实体类
+ * @author Nicky
+ * @date 2017年3月16日
+ */
 @Table(name="sys_role")
 @Entity
-public class Role {
+public class Role implements Serializable{
 
 	/**
 	 * 角色Id
@@ -21,17 +31,17 @@ public class Role {
 	private int roleId;
 	
 	/**
-	 * 描述
+	 * 角色描述
 	 */
 	private String desc;
-	
+	 
 	/**
-	 * 
+	 * 角色名称
 	 */
 	private String name;
 	
 	/**
-	 * 
+	 * 角色标志
 	 */
 	private String role;
 	
@@ -47,6 +57,7 @@ public class Role {
 		this.roleId = roleId;
 	}
 
+	@Column(length=100)
 	public String getDesc() {
 		return desc;
 	}
@@ -55,6 +66,7 @@ public class Role {
 		this.desc = desc;
 	}
 
+	@Column(length=100)
 	public String getName() {
 		return name;
 	}
@@ -63,6 +75,7 @@ public class Role {
 		this.name = name;
 	}
 
+	@Column(unique=true,length=100)
 	public String getRole() {
 		return role;
 	}
@@ -71,8 +84,8 @@ public class Role {
 		this.role = role;
 	}
 
-	@ManyToMany(targetEntity=Permission.class,fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	//@JoinTable(name="sys_role_permission", joinColumns=@JoinColumn(name="roleId",referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="permissionId",referencedColumnName="id"))
+	@OneToMany(targetEntity=Permission.class,cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+	@JoinTable(name="sys_role_permission", joinColumns=@JoinColumn(name="roleId",referencedColumnName="roleId"), inverseJoinColumns=@JoinColumn(name="permissionId",referencedColumnName="id",unique=true))
 	public Set<Permission> getPermissions() {
 		return permissions;
 	}
@@ -80,6 +93,5 @@ public class Role {
 	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
-	
 	
 }
