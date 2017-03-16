@@ -104,6 +104,19 @@
 			changeCode();
 			$("#codeImg").bind("click", changeCode);
 		});
+		
+		/**记住密码，页面加载时自动填写**/
+		$(document).ready(function(){
+			var username = $.cookie('username');
+			var password = $.cookie('password');
+			if(typeof(username)!="undefined"
+					&&typeof(password)!="undefined"){
+				$("#username").val(username);
+				$("#password").val(password);
+			}
+			$("#saveid").attr("checked", true);
+			$("#code").focus();
+		});
 	
 		/**按回车键触发登录按钮事件**/
 		$(document).keyup(function(event) {

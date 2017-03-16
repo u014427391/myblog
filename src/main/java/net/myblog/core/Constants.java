@@ -6,7 +6,14 @@ package net.myblog.core;
  * @date 2017年3月6日
  */
 public class Constants {
+	
 	public static final String SESSION_SECURITY_CODE = "sessionSecCode";
 	public static final String SESSION_USER = "sessionUser";
 	public static final String SESSION_ROLE_RIGHTS = "sessionRoleRights";
+	
+	//登录URL
+	public static final String URL_LOGIN = "/login.do";			
+	
+	//登录过滤的正则表达式
+	public static final String REGEXP_PATH = ".*/((login)|(logout)|(toblog)|(code)|(plugins)|(upload)|(static)).*";	//不对匹配该值的访问路径拦截（正则）
 }

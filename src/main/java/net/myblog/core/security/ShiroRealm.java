@@ -70,5 +70,20 @@ public class ShiroRealm extends AuthorizingRealm {
 		System.out.println("Shiro授权");
 	    return authorizationInfo;
 	}
+	
+	 @Override
+	 public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+		 super.clearCachedAuthorizationInfo(principals);
+	 }
+
+	 @Override
+	 public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+	     super.clearCachedAuthenticationInfo(principals);
+	 }
+
+	 @Override
+	 public void clearCache(PrincipalCollection principals) {
+	      super.clearCache(principals);
+	 }
 
 }

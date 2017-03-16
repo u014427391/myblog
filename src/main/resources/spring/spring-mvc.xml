@@ -17,14 +17,14 @@
 	<mvc:resources mapping="/upload/**" location="/,/upload/" />
 	<mvc:resources mapping="/plugins/**" location="/,/plugins/" />
 
-	<!-- 访问拦截 
+	<!-- 网站访问拦截器配置 start -->  
   	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**/**"/>
-			<bean class="com.appweb.interceptor.LoginHandlerInterceptor"/>
+			<bean class="net.myblog.web.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	  -->  
+	<!-- 网站访问拦截器配置 end -->
 	 
 	<!-- 配置SpringMVC的视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
