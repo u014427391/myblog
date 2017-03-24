@@ -20,6 +20,14 @@
 	<!-- 启用Spring框架的注解 -->
 	<context:annotation-config />
 	
+	<!-- 引入Shiro框架配置 start -->
+	<import resource="spring-shiro.xml" />
+	<!-- 引入Shiro框架配置 end -->
+	
+	<!-- 引入Velocity的配置 start -->
+	<import resource="spring-velocity.xml"/>
+	<!-- 引入Velocity的配置 end -->
+	
 	<!-- 启动注解扫描，组件由SpringMVC配置文件扫描 -->
 	<context:component-scan base-package="net.myblog" use-default-filters="false">  
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
@@ -112,7 +120,10 @@
 			<tx:method name="save*" propagation="REQUIRED" read-only="false" 
 			           rollback-for="java.lang.Exception" />
 		</tx:attributes>
-	</tx:advice>
+	</tx:advice>	
+	
+	<!-- 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!-- 开启Spring AOP的织入代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
@@ -122,42 +133,6 @@
 		<aop:pointcut id="pc" expression="execution(* net.myblog.service..*(..))" />
 		<aop:advisor pointcut-ref="pc" advice-ref="txAdvice" />
 	</aop:config>
-	
-	<!-- 开启事务注解 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	<!--  Shiro start  -->
-		<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-			<property name="realm" ref="ShiroRealm" />
-		</bean>
-		
-		<!-- 項目自定义的Realm -->
-	    <bean id="ShiroRealm" class="net.myblog.core.security.ShiroRealm" ></bean>
-		
-		<!-- Shiro Filter -->
-		<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-			<property name="securityManager" ref="securityManager" />
-			
-			<property name="loginUrl" value="/login" />
-			
-			<property name="successUrl" value="/admin/index" />
-			
-			<property name="unauthorizedUrl" value="/login" />
-			
-			<property name="filterChainDefinitions">
-				<value>
-				/static/**					= anon
-				/upload/**			    	= anon
-				/plugins/** 				= anon
-	           	/code.do 					= anon
-	           	/login.do    	 	        = anon
-	           	/logincheck.do				= anon
-	           	/toblog.do					= anon
-	           	/**							= authc
-				</value>
-			</property>
-		</bean>
-	<!--  Shiro end  -->
 	
    
 </beans>

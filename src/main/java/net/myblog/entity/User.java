@@ -1,8 +1,6 @@
 package net.myblog.entity;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -91,7 +89,12 @@ public class User {
 	 */
 	private Boolean locked = Boolean.FALSE;
 	
-	private Set<Role> roles = new HashSet<Role>();
+	/**
+	 * 权限
+	 */
+	private String rights;
+	
+	private Role role;		
 	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
@@ -210,16 +213,22 @@ public class User {
 		this.locked = locked;
 	}
 
-	//角色与用户是多对多的关联
-    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "sys_user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id") , inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId") )
-	public Set<Role> getRoles() {
-		return roles;
+	public String getRights() {
+		return rights;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setRights(String rights) {
+		this.rights = rights;
 	}
-	
+
+//	@ManyToMany(targetEntity = Role.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//    @JoinTable(name = "sys_user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id") , inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId") )
+//    public Role getRole() {
+//		return role;
+//	}
+//
+//	public void setRole(Role role) {
+//		this.role = role;
+//	}
 	
 }

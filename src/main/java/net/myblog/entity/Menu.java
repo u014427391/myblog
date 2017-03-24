@@ -1,24 +1,56 @@
 package net.myblog.entity;
 
 import java.io.Serializable;
-import java.lang.String;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
- * Entity implementation class for Entity: Menu
- *
+ * @description 菜单信息实体
+ * @author Nicky
+ * @date 2017年3月17日
  */
 @Table(name="sys_menu")
 @Entity
 public class Menu implements Serializable {
 
-	
+	/**
+	 * 菜单Id
+	 */
 	private int menuId;
-	private int identify;
+	
+	/**
+	 * 菜单名称
+	 */
 	private String name;
+	
+	/**
+	 * 菜单图标
+	 */
 	private String menuIcon;
+	
+	/**
+	 * 菜单URL
+	 */
 	private String menuUrl;
+	
+	/**
+	 * 菜单类型
+	 */
 	private String menuType;
+	
+	private Menu parentMenu;
+	
+	private List<Menu> subMenu;
+	
+	private boolean hasMenu = false;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Menu() {
@@ -35,14 +67,7 @@ public class Menu implements Serializable {
 		this.menuId = menuId;
 	}   
 	
-	@Column(unique=true)
-	public int getIdentify() {
-		return this.identify;
-	}
-
-	public void setIdentify(int identify) {
-		this.identify = identify;
-	}   
+	@Column(length=100)
 	public String getName() {
 		return this.name;
 	}
@@ -50,6 +75,8 @@ public class Menu implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}   
+	
+	@Column(length=30)
 	public String getMenuIcon() {
 		return this.menuIcon;
 	}
@@ -57,6 +84,8 @@ public class Menu implements Serializable {
 	public void setMenuIcon(String menuIcon) {
 		this.menuIcon = menuIcon;
 	}   
+	
+	@Column(length=100)
 	public String getMenuUrl() {
 		return this.menuUrl;
 	}
@@ -64,12 +93,41 @@ public class Menu implements Serializable {
 	public void setMenuUrl(String menuUrl) {
 		this.menuUrl = menuUrl;
 	}   
+	
+	@Column(length=100)
 	public String getMenuType() {
 		return this.menuType;
 	}
 
 	public void setMenuType(String menuType) {
 		this.menuType = menuType;
+	}
+
+	@Transient
+	public Menu getParentMenu() {
+		return parentMenu;
+	}
+
+	public void setParentMenu(Menu parentMenu) {
+		this.parentMenu = parentMenu;
+	}
+
+	@Transient
+	public List<Menu> getSubMenu() {
+		return subMenu;
+	}
+
+	public void setSubMenu(List<Menu> subMenu) {
+		this.subMenu = subMenu;
+	}
+
+	@Transient
+	public boolean isHasMenu() {
+		return hasMenu;
+	}
+
+	public void setHasMenu(boolean hasMenu) {
+		this.hasMenu = hasMenu;
 	}
    
 }

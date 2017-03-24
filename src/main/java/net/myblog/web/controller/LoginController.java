@@ -1,5 +1,6 @@
 package net.myblog.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,17 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import net.myblog.biz.RightsHelper;
 import net.myblog.core.Constants;
 import net.myblog.entity.ArticleSort;
 import net.myblog.entity.FriendlyLink;
+import net.myblog.entity.Menu;
+import net.myblog.entity.Role;
 import net.myblog.entity.User;
 import net.myblog.entity.WebAd;
 import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
+import net.myblog.service.MenuService;
 import net.myblog.service.UserService;
 import net.myblog.service.WebAdService;
 import net.myblog.utils.Tools;
@@ -25,6 +30,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,14 +46,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController extends BaseController{
 	
-	@Resource
+	@Autowired
 	UserService userService;
-	@Resource
-	ArticleSortService articleSortService;
-	@Resource
-	FriendlyLinkService friendlyLinkService;
-	@Resource
-	WebAdService webAdService;
+	@Autowired
+	MenuService menuService;
 	
 	/**
 	 * 获取登录用户的IP
@@ -66,23 +68,6 @@ public class LoginController extends BaseController{
 		map.put("loginIp", ip);
 		userService.saveIP(map);
 	}  
-	
-	/**
-	 * 访问博客主页
-	 * @return
-	 */
-	@RequestMapping(value="/toblog",produces="text/html;charset=UTF-8")
-	public ModelAndView toBlog(Model model)throws ClassNotFoundException{
-		ModelAndView mv = this.getModelAndView();
-		List<ArticleSort> articleSorts = articleSortService.findAll();
-		List<FriendlyLink> links = friendlyLinkService.findAll();
-		List<WebAd> webAds = webAdService.findAll();
-		model.addAttribute("articleSorts", articleSorts);
-		model.addAttribute("links",links);
-		model.addAttribute("webAds", webAds);
-		mv.setViewName("myblog/index");
-		return mv;
-	}
 	
 	/**
 	 * 访问后台登录页面
@@ -111,8 +96,8 @@ public class LoginController extends BaseController{
 		String logindata[] = request.getParameter("LOGINDATA").split(",");
 		if(logindata != null && logindata.length == 3){
 			//获取Shiro管理的Session
-			Subject  currentUser = SecurityUtils.getSubject();
-			Session session = currentUser.getSession();
+			Subject subject = SecurityUtils.getSubject();
+			Session session = subject.getSession();
 			String codeSession = (String)session.getAttribute(Constants.SESSION_SECURITY_CODE);
 			String code = logindata[2]; 
 			/**检测页面验证码是否为空，调用工具类检测**/
@@ -138,9 +123,9 @@ public class LoginController extends BaseController{
 							//保存登录IP
 							getRemortIP(username);
 							/**Shiro加入身份验证**/
-							Subject subject = SecurityUtils.getSubject();
+							Subject sub = SecurityUtils.getSubject();
 							UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-							subject.login(token);
+							sub.login(token);
 						}
 					}else{
 						//账号或者密码错误
@@ -167,14 +152,52 @@ public class LoginController extends BaseController{
 	@RequestMapping(value="/admin/index")
 	public ModelAndView toMain() throws AuthenticationException{
 		ModelAndView mv = this.getModelAndView();
-		Subject currentUser = SecurityUtils.getSubject();
-		Session session = currentUser.getSession();
+		Subject subject = SecurityUtils.getSubject();
+		Session session = subject.getSession();
 		User user = (User)session.getAttribute(Constants.SESSION_USER);
 		if(user != null){
 			
+			Role role = null;
+			String rights = role != null?role.getRights():"";
+			
+			session.setAttribute(Constants.SESSION_RIGHTS, rights);
+			
+			List<Menu> allmenu= new ArrayList<Menu>();
+			if(session.getAttribute(Constants.SESSION_ALLMENU) == null){
+				allmenu = menuService.findAll();
+				for(Menu m:allmenu){
+					m.setHasMenu(RightsHelper.testRights(rights, m.getMenuId()));
+					if(m.isHasMenu()){
+						List<Menu> subMenuList = m.getSubMenu();
+						for(Menu submenu:subMenuList){
+							submenu.setHasMenu(RightsHelper.testRights(rights, submenu.getMenuId()));
+						}
+					}
+				}
+				session.setAttribute(Constants.SESSION_ALLMENU, allmenu);
+			}else{
+				allmenu = (List<Menu>)session.getAttribute(Constants.SESSION_ALLMENU);
+			}
+			
+			List<Menu> menuList = new ArrayList<Menu>();
+			if(session.getAttribute(Constants.SESSION_MENULIST)==null){
+				List<Menu> menuList1 = new ArrayList<Menu>();
+				List<Menu> menuList2 = new ArrayList<Menu>();
+				
+				for(Menu mu:allmenu){
+					if(mu.getMenuId()==1){
+						menuList1.add(mu);
+					}else{
+						menuList2.add(mu);
+					}
+				}
+				
+			}
+			
+			mv.addObject("menus",allmenu);
 		}else{
 			//会话失效，返回登录界面
-			//mv.setViewName("admin/login");
+			mv.setViewName("admin/login");
 		}
 		mv.setViewName("admin/index");
 		return mv;
@@ -188,10 +211,12 @@ public class LoginController extends BaseController{
 	public ModelAndView logout(){
 		ModelAndView mv = this.getModelAndView();
 		/**Shiro管理Session**/
-		Subject currentUser = SecurityUtils.getSubject();
-		Session session = currentUser.getSession();
+		Subject sub = SecurityUtils.getSubject();
+		Session session = sub.getSession();
 		session.removeAttribute(Constants.SESSION_USER);
 		session.removeAttribute(Constants.SESSION_SECURITY_CODE);
+		session.removeAttribute(Constants.SESSION_ALLMENU);
+		session.removeAttribute(Constants.SESSION_MENULIST);
 		/**Shiro销毁登录**/
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();

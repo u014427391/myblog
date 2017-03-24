@@ -6,10 +6,21 @@ package net.myblog.core;
  * @date 2017年3月6日
  */
 public class Constants {
-	
+	//验证码Session
 	public static final String SESSION_SECURITY_CODE = "sessionSecCode";
+	//用户信息Session
 	public static final String SESSION_USER = "sessionUser";
+	//角色权限Session
 	public static final String SESSION_ROLE_RIGHTS = "sessionRoleRights";
+	//所有菜单Session
+	public static final String SESSION_ALLMENU = "sessionAllMenu";
+	//菜单列表Session
+	public static final String SESSION_MENULIST = "sessionMenuList";
+	//权限Session
+	public static final String SESSION_RIGHTS = "sessionRights";
+	
+	//页面数量
+	public static final Integer PAGE_SIZE = 3;
 	
 	//登录URL
 	public static final String URL_LOGIN = "/login.do";			

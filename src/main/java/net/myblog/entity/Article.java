@@ -16,54 +16,37 @@ import javax.persistence.TemporalType;
 @Entity
 public class Article {
 	
-	/**
-	 * 文章Id，自增
-	 */
+	/** 文章Id，自增**/
 	private int articleId;
 	
-	/**
-	 * 文章名称
-	 */
+	/** 文章名称**/
 	private String articleName;
 	
-	/**
-	 * 文章发布时间
-	 */
+	/** 文章发布时间**/
 	private Date articleTime;
 	
-	/**
-	 * 文章内容
-	 */
+	/** 图片路径，测试**/
+	private String imgPath;
+	
+	/** 文章内容**/
 	private String articleContent;
 	
-	/**
-	 * 查看人数
-	 */
+	/** 查看人数**/
 	private int articleClick;
 	
-	/**
-	 * 是否博主推荐。0为否；1为是
-	 */
+	/** 是否博主推荐。0为否；1为是**/
 	private int articleSupport;
 	
-	/**
-	 * 是否置顶。0为；1为是
-	 */
+	/** 是否置顶。0为；1为是**/
 	private int articleUp;
 	
-	/**
-	 * 文章类别。0为私有，1为公开，2为仅好友查看
-	 */
+	/** 文章类别。0为私有，1为公开，2为仅好友查看**/
 	private int articleType;
 	
-	/**
-	 * 栏目Id
-	 */
+	/** 栏目Id**/
 	private int typeId;
 	
-	/**
-	 * 博主Id
-	 */
+	/** 博主Id**/
 	private int userId;
 
 	@GeneratedValue
@@ -93,6 +76,15 @@ public class Article {
 
 	public void setArticleTime(Date articleTime) {
 		this.articleTime = articleTime;
+	}
+
+	@Column(length=100)
+	public String getImgPath() {
+		return imgPath;
+	}
+
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 
 	@Column(nullable=false)

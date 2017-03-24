@@ -139,6 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				tabPanel.tabs('select',title);
 			}
 		}
+		
 		/**
 		* Name 移除菜单选项
 		*/

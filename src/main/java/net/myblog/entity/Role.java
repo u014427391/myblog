@@ -41,9 +41,9 @@ public class Role implements Serializable{
 	private String name;
 	
 	/**
-	 * 角色标志
+	 * 权限
 	 */
-	private String role;
+	private String rights;
 	
 	private Set<Permission> permissions = new HashSet<Permission>();
 
@@ -75,13 +75,13 @@ public class Role implements Serializable{
 		this.name = name;
 	}
 
-	@Column(unique=true,length=100)
-	public String getRole() {
-		return role;
+	@Column(length=100)
+	public String getRights() {
+		return rights;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRights(String rights) {
+		this.rights = rights;
 	}
 
 	@OneToMany(targetEntity=Permission.class,cascade=CascadeType.MERGE,fetch=FetchType.EAGER)

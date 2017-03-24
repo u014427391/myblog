@@ -14,19 +14,13 @@ import javax.persistence.Table;
 @Entity
 public class SecretMessage {
 
-	/**
-	 * 自增Id
-	 */
+	/** 自增Id **/
 	private int secretId;
 	
-	/**
-	 * 发送者Id
-	 */
+	/** 发送者Id **/
 	private int sendId;
 	
-	/**
-	 * 接收者Id
-	 */
+	/** 接收者Id **/
 	private int receiveId;
 	
 	/**

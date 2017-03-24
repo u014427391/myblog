@@ -14,24 +14,16 @@ import javax.persistence.Table;
 @Entity
 public class WebAd {
 
-	/**
-	 * 网站广告Id
-	 */
+	/** 网站广告Id **/
 	private int adId;
 	
-	/**
-	 * 广告标题
-	 */
+	/** 广告标题 **/
 	private String adTitle;
 	
-	/**
-	 * 广告图片路径
-	 */
+	/** 广告图片路径 **/
 	private String adImage;
 	
-	/**
-	 * 广告描述
-	 */
+	/** 广告描述 **/
 	private String adDesc;
 
 	@GeneratedValue

@@ -25,7 +25,6 @@ import javax.persistence.Table;
 @Table(name="sys_permission")
 @Entity
 public class Permission implements Serializable {
-
 	
 	private int id;
 	private String desc;

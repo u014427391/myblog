@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(name="/articleSort")
 public class ArticleSortController extends BaseController{
 	
-	@Resource ArticleSortService articleSortService;
+	@Autowired ArticleSortService articleSortService;
 
 	/**
 	 * 获取所有的博客标签(分类)信息
