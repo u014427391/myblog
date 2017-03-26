@@ -37,7 +37,7 @@ input[type="checkbox"] { cursor: pointer;}
 .wu-textarea { padding:3px; border:1px #95b8e7 solid; width:260px;}
 .wu-text { height:14px; line-height:14px; }
 
-.wu-header { height:55px; position:relative; z-index:0; overflow:hidden; border-bottom:1px #95b8e7 solid; background:url(../images/bg_header.jpg) bottom repeat-x;}
+.wu-header { height:55px; position:relative; z-index:0; overflow:hidden; border-bottom:1px #95b8e7 solid; background:url(../static/images/bg/bg_header.jpg) bottom repeat-x;}
 .wu-header-left { position:absolute; z-index:1; left:15px; top:0;}
 .wu-header-left h1 { font:20px/20px Verdana; color:#fff;}
 .wu-header-right { position:absolute; z-index:1; right:5px; top:0; color:#fff; text-align:right;}

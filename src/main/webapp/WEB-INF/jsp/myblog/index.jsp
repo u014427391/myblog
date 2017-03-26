@@ -29,14 +29,7 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
 <script type="text/javascript" src="static/js/up/js.js"></script>
 <!-- 返回顶部调用 end-->
 <script type="text/javascript">
-	  	$(document).ready(function(){
-	  	  var totalPageGet = ${totalPage};
-	      var totalPage = Number(totalPageGet);
-	      var pageSizeGet = ${pageSize};
-	      var pageSize = Number(pageSizeGet);
-	      var pageCount = totalPage/pageSize;
-	      
-	    });
+	
 </script>
 <script type="text/javascript">
 $(function(){
@@ -92,7 +85,6 @@ $(function(){
 		}
 	});
 });
-
 //点击跳转页面
 function pageGroup(pageNum,pageCount){
 	switch(pageNum){
@@ -113,8 +105,6 @@ function pageGroup(pageNum,pageCount){
 		break;
 	}
 }
-
-
 //根据当前选中页生成页面点击按钮
 function page_icon(page,count,eq){
 	var html = "";
@@ -125,7 +115,6 @@ function page_icon(page,count,eq){
     $("#pageGro ul").html(html);
     $("#pageGro ul li").eq(eq).addClass("on");
 }
-
 //上一页
 function pageUp(pageNum,pageCount){
 	switch(pageNum){
@@ -145,7 +134,6 @@ function pageUp(pageNum,pageCount){
 		break;
 	}
 }
-
 //下一页
 function pageDown(pageNum,pageCount){
 	switch(pageNum){
@@ -324,32 +312,44 @@ window.onload = function ()
       <div class="ms-main" id="ms-main">
         <div style="display: block;" class="bd bd-news" >
           <ul>
-            <li><a href="/" target="_blank">住在手机里的朋友</a></li>
-            <li><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></li>
-            <li><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码...</a></li>
-            <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
-            <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
-            <li><a href="/" target="_blank">豪雅手机正式发布! 在法国全手工打造的奢侈品</a></li>
+          	<c:choose>
+          		<c:when test="${not empty articles1}">
+          			<c:forEach items="${articles1 }" var="acn" varStatus="artcn">
+          			<li><a href="http://www.baidu.com" target="_blank">${acn.articleName}</a></li>
+          			</c:forEach>
+          		</c:when>
+          		<c:otherwise>
+          			<li>没有相关数据</li>
+          		</c:otherwise>
+          	</c:choose>
           </ul>
         </div>
         <div  class="bd bd-news">
           <ul>
-            <li><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码...</a></li>
-            <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
-            <li><a href="/" target="_blank">住在手机里的朋友</a></li>
-            <li><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></li>
-            <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
-            <li><a href="/" target="_blank">豪雅手机正式发布! 在法国全手工打造的奢侈品</a></li>
+            <c:choose>
+          		<c:when test="${not empty articles2}">
+          			<c:forEach items="${articles2 }" var="acn" varStatus="artcn">
+          			<li><a href="http://www.baidu.com" target="_blank">${acn.articleName}</a></li>
+          			</c:forEach>
+          		</c:when>
+          		<c:otherwise>
+          			<li>没有相关数据</li>
+          		</c:otherwise>
+          	</c:choose>
           </ul>
         </div>
         <div class="bd bd-news">
           <ul>
-            <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
-            <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
-            <li><a href="/" target="_blank">住在手机里的朋友</a></li>
-            <li><a href="/" target="_blank">豪雅手机正式发布! 在法国全手工打造的奢侈品</a></li>
-            <li><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></li>
-            <li><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码...</a></li>
+            <c:choose>
+          		<c:when test="${not empty articles3}">
+          			<c:forEach items="${articles3 }" var="acn" varStatus="artcn">
+          			<li><a href="http://www.baidu.com" target="_blank">${acn.articleName}</a></li>
+          			</c:forEach>
+          		</c:when>
+          		<c:otherwise>
+          			<li>没有相关数据</li>
+          		</c:otherwise>
+          	</c:choose>
           </ul>
         </div>
       </div>
@@ -373,7 +373,7 @@ window.onload = function ()
       </ul>
     </div>
     <div class="tuwen">
-      <h3>移动鼠标给小动物喂食^V^</h3>
+      <h3>移动鼠标给小动物喂食</h3>
       <object type="application/x-shockwave-flash" style="outline:none;" 
       data="http://cdn.abowman.com/widgets/turtles/turtle.swf?" width="250" height="210">
 	      <param name="movie" value="http://cdn.abowman.com/widgets/turtles/turtle.swf?"></param>

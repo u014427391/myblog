@@ -19,8 +19,10 @@ public class Constants {
 	//权限Session
 	public static final String SESSION_RIGHTS = "sessionRights";
 	
-	//页面数量
+	//页面分页数量
 	public static final Integer PAGE_SIZE = 3;
+	//页面排序数量
+	public static final Integer SORT_SIZE = 6;
 	
 	//登录URL
 	public static final String URL_LOGIN = "/login.do";			

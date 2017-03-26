@@ -9,17 +9,17 @@ import org.apache.velocity.app.VelocityEngine;
 public class MyTest {
 	
 	public static void main(String[] args) throws Exception {
-//		  //初始化参数
-//        Properties properties=new Properties();
-//        //设置velocity资源加载方式为file
-//        //配置Velocity日志文件存放位置
-//      	properties.put("runtime.log", "/WEB-INF/log/velocity.log");
-//      	//配置Velocity模板文件存放位置
-//      	properties.put("file.resource.loader.path", "/WEB-INF/vm");
-//      	//配置输入编码格式
-//      	properties.put("input.encoding", "UTF-8");
-//      	//配置输出编码格式
-//      	properties.put("output.encoding", "UTF-8");
+		  //初始化参数
+        Properties properties=new Properties();
+        //设置velocity资源加载方式为file
+        //配置Velocity日志文件存放位置
+      	properties.put("runtime.log", "/WEB-INF/log/velocity.log");
+      	//配置Velocity模板文件存放位置
+      	properties.put("file.resource.loader.path", "/WEB-INF/vm");
+      	//配置输入编码格式
+      	properties.put("input.encoding", "UTF-8");
+      	//配置输出编码格式
+      	properties.put("output.encoding", "UTF-8");
         //实例化一个VelocityEngine对象
         VelocityEngine velocityEngine=new VelocityEngine();
         
