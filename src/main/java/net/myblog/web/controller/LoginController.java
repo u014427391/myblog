@@ -2,25 +2,21 @@ package net.myblog.web.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import net.myblog.biz.RightsHelper;
 import net.myblog.core.Constants;
-import net.myblog.entity.ArticleSort;
-import net.myblog.entity.FriendlyLink;
 import net.myblog.entity.Menu;
+import net.myblog.entity.Permission;
 import net.myblog.entity.Role;
 import net.myblog.entity.User;
-import net.myblog.entity.WebAd;
-import net.myblog.service.ArticleSortService;
-import net.myblog.service.FriendlyLinkService;
 import net.myblog.service.MenuService;
 import net.myblog.service.UserService;
-import net.myblog.service.WebAdService;
 import net.myblog.utils.Tools;
 import net.sf.json.JSONObject;
 
@@ -32,7 +28,6 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -157,20 +152,26 @@ public class LoginController extends BaseController{
 		User user = (User)session.getAttribute(Constants.SESSION_USER);
 		if(user != null){
 			
-			Role role = null;
-			String rights = role != null?role.getRights():"";
+			Set<Role> roles = user.getRoles();
+			Set<Permission> permissions = new HashSet<Permission>();
+			for(Role r : roles){
+				permissions.addAll(r.getPermissions());
+			}
 			
-			session.setAttribute(Constants.SESSION_RIGHTS, rights);
+			Set<Menu> menus = new HashSet<Menu>();
+			for(Permission p : permissions){
+				menus.add(p.getMenu());
+			}
 			
 			List<Menu> allmenu= new ArrayList<Menu>();
 			if(session.getAttribute(Constants.SESSION_ALLMENU) == null){
 				allmenu = menuService.findAll();
 				for(Menu m:allmenu){
-					m.setHasMenu(RightsHelper.testRights(rights, m.getMenuId()));
+//					m.setHasMenu(RightsHelper.testRights(rights, m.getMenuId()));
 					if(m.isHasMenu()){
 						List<Menu> subMenuList = m.getSubMenu();
 						for(Menu submenu:subMenuList){
-							submenu.setHasMenu(RightsHelper.testRights(rights, submenu.getMenuId()));
+//							submenu.setHasMenu(RightsHelper.testRights(rights, submenu.getMenuId()));
 						}
 					}
 				}
@@ -194,7 +195,7 @@ public class LoginController extends BaseController{
 				
 			}
 			
-			mv.addObject("menus",allmenu);
+			mv.addObject("menus",menus);
 		}else{
 			//会话失效，返回登录界面
 			mv.setViewName("admin/login");

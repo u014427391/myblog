@@ -154,6 +154,17 @@ function pageDown(pageNum,pageCount){
 	}
 }
 </script>
+<script type="text/javascript">
+	function tip(){
+		alert('博主不看微博哟!');
+	}
+	function tipEmail(){
+		alert('博主邮箱为nickypm@foxmail.com');
+	}
+	function tipRSS(){
+		alert('预定功能开发中...');
+	}
+</script>
 </head>
 <body>
 <header>
@@ -271,10 +282,10 @@ function pageDown(pageNum,pageCount){
       <h3>关注我</h3>
       <div class="gzwm">
         <ul>
-          <li><a class="xlwb" href="#" target="_blank">新浪微博</a></li>
-          <li><a class="txwb" href="#" target="_blank">腾讯微博</a></li>
-          <li><a class="rss" href="portal.php?mod=rss" target="_blank">RSS</a></li>
-          <li><a class="wx" href="nickypm@foxmail.com">邮箱</a></li>
+          <li><a class="xlwb" href="javascript:tip();" target="_blank">新浪微博</a></li>
+          <li><a class="txwb" href="javascript:tip();" target="_blank">腾讯微博</a></li>
+          <li><a class="rss" href="javascript:tipRSS();" target="_blank">RSS</a></li>
+          <li><a class="wx" href="javascript:tipEmail();">邮箱</a></li>
         </ul>
       </div>
     </div>

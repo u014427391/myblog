@@ -31,10 +31,13 @@ CREATE TABLE `article` (
   `articleType` int(11) NOT NULL COMMENT '文章类别。0为私有，1为公开，2为仅好友查看',
   `typeId` int(11) NOT NULL COMMENT '栏目Id',
   `userId` int(11) NOT NULL COMMENT '博主Id',
+  `imgPath` varchar(100) DEFAULT NULL COMMENT '图片路径',
   PRIMARY KEY (`articleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `article` */
+
+insert  into `article`(`articleId`,`articleName`,`articleTime`,`articleContent`,`articleClick`,`articleSupport`,`articleUp`,`articleType`,`typeId`,`userId`,`imgPath`) values (1,'住在手机里的朋友','2017-03-02','通信时代，无论是初次相见还是老友重逢，交换联系方式，常常是彼此交换名片，然后郑重或是出于礼貌用手机记下对方的电话号码。在快节奏的生活里，我们不知不觉中就成为住在别人手机里的朋友。又因某些意外，变成了别人手机里匆忙的过客，这种快餐式的友谊 ...',1,1,0,1,1,1,'static/images/02.jpg'),(2,'教你怎样用欠费手机拨打电话','2017-03-25','初次相识的喜悦，让你觉得似乎找到了知音。于是，对于投缘的人，开始了较频繁的交往。渐渐地，初识的喜悦退尽，接下来就是仅仅保持着联系，平淡到偶尔在节假曰发短信互致问候...',2,1,0,1,1,1,'static/images/02.jpg'),(3,'你面对的是生活而不是手机','2017-03-10','每一次与别人吃饭，总会有人会拿出手机。以为他们在打电话或者有紧急的短信，但用余光瞟了一眼之后发现无非就两件事：1、看小说，2、上人人或者QQ...',3,1,0,1,1,1,'static/images/02.jpg'),(4,'你面对的是生活而不是手机','2017-03-27','每一次与别人吃饭，总会有人会拿出手机。以为他们在打电话或者有紧急的短信，但用余光瞟了一眼之后发现无非就两件事：1、看小说，2、上人人或者QQ...',4,1,0,1,1,1,'static/images/02.jpg'),(5,'你面对的是生活而不是手机','2017-03-28','每一次与别人吃饭，总会有人会拿出手机。以为他们在打电话或者有紧急的短信，但用余光瞟了一眼之后发现无非就两件事：1、看小说，2、上人人或者QQ...',5,1,0,1,1,1,'static/images/02.jpg'),(6,'测试','2017-03-29','每一次与别人吃饭，总会有人会拿出手机。以为他们在打电话或者有紧急的短信，但用余光瞟了一眼之后发现无非就两件事：1、看小说，2、上人人或者QQ...',6,1,0,1,1,1,'static/images/02.jpg'),(7,'测试数据','2017-03-30','测试',7,1,0,1,1,1,'static/images/02.jpg'),(8,'测试数据','2017-03-01','测试数据',8,1,0,1,1,1,'static/images/02.jpg');
 
 /*Table structure for table `article_comment` */
 
@@ -117,16 +120,18 @@ DROP TABLE IF EXISTS `sys_menu`;
 
 CREATE TABLE `sys_menu` (
   `menuId` int(11) NOT NULL AUTO_INCREMENT,
-  `identity` int(11) DEFAULT NULL,
+  `identity` varchar(100) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `menuIcon` varchar(30) DEFAULT NULL,
   `menuUrl` varchar(100) DEFAULT NULL,
   `menuType` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`menuId`),
   UNIQUE KEY `uk` (`identity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_menu` */
+
+insert  into `sys_menu`(`menuId`,`identity`,`name`,`menuIcon`,`menuUrl`,`menuType`) values (1,'user','用户管理','icon-list-alt','article/listall.do','2'),(2,'role','角色管理','','','1'),(3,'resource','资源管理','','','1'),(4,'operation','操作权限管理','','','1');
 
 /*Table structure for table `sys_operation` */
 
@@ -142,6 +147,8 @@ CREATE TABLE `sys_operation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_operation` */
+
+insert  into `sys_operation`(`id`,`desc`,`name`,`operation`) values (1,'创建操作','创建','create'),(2,'编辑权限','编辑','edit'),(3,'删除权限','删除','delete'),(4,'浏览权限','浏览','view');
 
 /*Table structure for table `sys_permission` */
 
@@ -159,6 +166,8 @@ CREATE TABLE `sys_permission` (
 
 /*Data for the table `sys_permission` */
 
+insert  into `sys_permission`(`id`,`desc`,`name`,`menuId`) values (1,'用户管理相关权限','用户管理',1),(2,NULL,NULL,2),(3,NULL,NULL,3),(4,NULL,NULL,4),(5,NULL,NULL,3);
+
 /*Table structure for table `sys_permission_operation` */
 
 DROP TABLE IF EXISTS `sys_permission_operation`;
@@ -174,20 +183,23 @@ CREATE TABLE `sys_permission_operation` (
 
 /*Data for the table `sys_permission_operation` */
 
+insert  into `sys_permission_operation`(`permissionId`,`operationId`) values (1,1),(2,1),(3,1),(4,1),(5,1);
+
 /*Table structure for table `sys_role` */
 
 DROP TABLE IF EXISTS `sys_role`;
 
 CREATE TABLE `sys_role` (
   `roleId` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色Id',
-  `desc` varchar(100) DEFAULT NULL COMMENT '角色描述',
   `name` varchar(100) DEFAULT NULL COMMENT '角色名称',
-  `role` varchar(100) DEFAULT NULL COMMENT '角色标志',
-  PRIMARY KEY (`roleId`),
-  UNIQUE KEY `uk_r_1` (`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `desc` varchar(100) DEFAULT NULL COMMENT '角色描述',
+  `rights` varchar(100) DEFAULT NULL COMMENT '角色标志',
+  PRIMARY KEY (`roleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_role` */
+
+insert  into `sys_role`(`roleId`,`name`,`desc`,`rights`) values (1,'拥有所有权限','超级管理员','admin'),(2,'用户管理权限','用户管理员','admin_user'),(3,'角色管理权限','角色管理员','admin_role'),(4,'资源管理权限','资源管理员','admin_resource'),(6,'操作权限管理','操作权限管理员','admin_operation'),(7,'查看系统权限','查看员','checker');
 
 /*Table structure for table `sys_role_permission` */
 
@@ -203,6 +215,8 @@ CREATE TABLE `sys_role_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_role_permission` */
+
+insert  into `sys_role_permission`(`roleId`,`permissionId`) values (1,1),(1,2),(1,3),(1,4),(2,5);
 
 /*Table structure for table `sys_user` */
 
@@ -222,13 +236,14 @@ CREATE TABLE `sys_user` (
   `imageUrl` varchar(100) DEFAULT NULL COMMENT '头像图片路径',
   `regTime` date NOT NULL COMMENT '注册时间',
   `locked` tinyint(1) DEFAULT NULL COMMENT '账号是否被锁定',
+  `rights` varchar(100) DEFAULT NULL COMMENT '权限',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_u_1` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`username`,`password`,`phone`,`sex`,`email`,`mark`,`rank`,`lastLogin`,`loginIp`,`imageUrl`,`regTime`,`locked`) values (1,'admin','28dca2a7b33b7413ad3bce1d58c26dd679c799f1',1552323312,'男','313222@foxmail.com','超级管理员','admin','2016-12-12','127.0.0.1','/static/images/','2017-03-15',1);
+insert  into `sys_user`(`id`,`username`,`password`,`phone`,`sex`,`email`,`mark`,`rank`,`lastLogin`,`loginIp`,`imageUrl`,`regTime`,`locked`,`rights`) values (1,'admin','28dca2a7b33b7413ad3bce1d58c26dd679c799f1',1552323312,'男','313222@foxmail.com','超级管理员','admin','2016-12-12','127.0.0.1','/static/images/','2017-03-15',0,NULL),(2,'sys','28dca2a7b33b7413ad3bce1d58c26dd679c799f1',1552323312,'男','313222@foxmail.com','系统管理员','sys','2016-12-12','127.0.0.1','/static/images/','2017-03-15',0,NULL),(3,'user','28dca2a7b33b7413ad3bce1d58c26dd679c799f1',1552323312,'男','313222@foxmail.com','用户','user','2016-12-12','127.0.0.1','/static/images/','2017-03-15',0,NULL);
 
 /*Table structure for table `sys_user_role` */
 
@@ -244,6 +259,8 @@ CREATE TABLE `sys_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_user_role` */
+
+insert  into `sys_user_role`(`userId`,`roleId`) values (1,1),(2,2),(3,3),(3,4),(3,7);
 
 /*Table structure for table `user_attention` */
 

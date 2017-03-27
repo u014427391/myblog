@@ -38,12 +38,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
         	<div title="快捷菜单" data-options="iconCls:'icon-search'" style="padding:5px;">  	
     			<ul class="easyui-tree wu-side-tree">
-                	<li iconCls="icon-search"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="temp/layout-2.html" iframe="0">菜单导航</a></li>
-                    <li iconCls="icon-ok"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">用户管理</a></li>
-                    <li iconCls="icon-save"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">角色管理</a></li>
-                    <li iconCls="icon-ok"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">数据字典</a></li>
-                    <li iconCls="icon-ok"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">系统参数</a></li>
-                    <li iconCls="icon-ok"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="temp/layout-3.html" iframe="0">操作日志</a></li>
+    				<c:choose>
+    				<c:when test="${not empty menus}">
+    					<c:forEach items="${menus }" var="m" varStatus="menus">
+	                	<li iconCls="icon-search">
+		                	<a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="#" iframe="0">
+		                	${m.name}
+		                	</a>
+	                	</li>
+	                	</c:forEach>
+                	</c:when>
+                	<c:otherwise>
+                		<li>没有相关数据</li>
+                	</c:otherwise>
+                	</c:choose>
                 </ul>
             </div>
         </div>
