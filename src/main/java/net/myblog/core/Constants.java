@@ -14,8 +14,6 @@ public class Constants {
 	public static final String SESSION_ROLE_RIGHTS = "sessionRoleRights";
 	//所有菜单Session
 	public static final String SESSION_ALLMENU = "sessionAllMenu";
-	//菜单列表Session
-	public static final String SESSION_MENULIST = "sessionMenuList";
 	//权限Session
 	public static final String SESSION_RIGHTS = "sessionRights";
 	

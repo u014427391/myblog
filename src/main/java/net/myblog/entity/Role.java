@@ -25,25 +25,17 @@ import javax.persistence.Table;
 @Entity
 public class Role implements Serializable{
 
-	/**
-	 * 角色Id
-	 */
+	/** 角色Id**/
 	private int roleId;
 	
-	/**
-	 * 角色描述
-	 */
+	/** 角色描述**/
 	private String desc;
 	 
-	/**
-	 * 角色名称
-	 */
+	/** 角色名称**/
 	private String name;
 	
-	/**
-	 * 权限
-	 */
-	private String rights;
+	/** 角色标志**/
+	private String role;
 	
 	private Set<Permission> permissions = new HashSet<Permission>();
 
@@ -76,12 +68,12 @@ public class Role implements Serializable{
 	}
 
 	@Column(length=100)
-	public String getRights() {
-		return rights;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRights(String rights) {
-		this.rights = rights;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@OneToMany(targetEntity=Permission.class,cascade=CascadeType.MERGE,fetch=FetchType.EAGER)

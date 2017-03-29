@@ -45,9 +45,9 @@ public class ShiroRealm extends AuthorizingRealm {
 	    	 throw new UnknownAccountException();//没有找到账号异常
 	     }
 	     /**检验账号是否被锁定 **/
-//	     if(Boolean.TRUE.equals(user.getLocked())){
-//	    	 throw new LockedAccountException();//抛出账号锁定异常
-//	     }
+	     if(Boolean.TRUE.equals(user.getLocked())){
+	    	 throw new LockedAccountException();//抛出账号锁定异常
+	     }
 	     /**AuthenticatingRealm使用CredentialsMatcher进行密码匹配**/
 	     if(null != username && null != password){
 	    	 return new SimpleAuthenticationInfo(username, password, getName());
@@ -65,8 +65,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
 		String username = (String)pc.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-//	    authorizationInfo.setRoles(userService.getRoles(username));
-//	    authorizationInfo.setStringPermissions(userService.getPermissions(username));
+	    authorizationInfo.setRoles(userService.getRoles(username));
+	    authorizationInfo.setStringPermissions(userService.getPermissions(username));
 		System.out.println("Shiro授权");
 	    return authorizationInfo;
 	}

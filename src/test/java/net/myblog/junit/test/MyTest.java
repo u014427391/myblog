@@ -1,7 +1,12 @@
 package net.myblog.junit.test;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+
+import net.myblog.entity.Menu;
+import net.myblog.service.MenuService;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -36,6 +41,10 @@ public class MyTest {
         //从vm目录下加载hello.vm模板,在eclipse工程中该vm目录与src目录平级
         velocityEngine.mergeTemplate("vm/article.vm", "UTF-8", context, writer);
         System.out.println(writer.toString());
+      
+        
 	}
+	
+	
 
 }

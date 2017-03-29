@@ -14,19 +14,13 @@ import javax.persistence.Table;
 @Entity
 public class FriendlyLink {
 
-	/**
-	 * 友情链接Id
-	 */
+	/** 友情链接Id**/
 	private int linkId;
 	
-	/**
-	 * 链接名称
-	 */
+	/** 链接名称**/
 	private String linkName;
 	
-	/**
-	 * 链接url
-	 */
+	/** 链接url**/
 	private String linkUrl;
 
 	@GeneratedValue

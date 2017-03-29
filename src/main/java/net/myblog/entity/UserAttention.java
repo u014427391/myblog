@@ -14,19 +14,13 @@ import javax.persistence.Table;
 @Entity
 public class UserAttention {
 
-	/**
-	 * 自增Id
-	 */
+	/** 自增Id**/
 	private int aId;
 	
-	/**
-	 * 用户Id
-	 */
+	/** 用户Id**/
 	private int userId;
 	
-	/**
-	 * 关注者Id
-	 */
+	/** 关注者Id**/
 	private int attentionId;
 
 	@GeneratedValue

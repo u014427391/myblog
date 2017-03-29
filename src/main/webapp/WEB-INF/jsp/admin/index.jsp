@@ -29,31 +29,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div class="wu-header-right">
         	<p><strong class="easyui-tooltip" title="2条未读消息">admin</strong>，欢迎您！</p>
-            <p><a href="#">网站首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
+            <p><a href="toblog.do">网站首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="logout.do">安全退出</a></p>
         </div>
     </div>
     <!-- end of header -->
     <!-- begin of sidebar -->
 	<div class="wu-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'"> 
     	<div class="easyui-accordion" data-options="border:false,fit:true"> 
-        	<div title="快捷菜单" data-options="iconCls:'icon-search'" style="padding:5px;">  	
+    	<c:choose>
+    		<c:when test="${not empty menus}">
+    		<c:forEach items="${menus }" var="m" varStatus="menus">
+    		<div title="${m.name }" data-options="iconCls:'icon-search'" style="padding:5px;">  	
     			<ul class="easyui-tree wu-side-tree">
-    				<c:choose>
-    				<c:when test="${not empty menus}">
-    					<c:forEach items="${menus }" var="m" varStatus="menus">
+    					<c:if test="${m.hasMenu==true }">
+    					<c:forEach items="${m.subMenu }" var="s" varStatus="sub">
 	                	<li iconCls="icon-search">
 		                	<a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="#" iframe="0">
-		                	${m.name}
+		                	${s.name}
 		                	</a>
 	                	</li>
 	                	</c:forEach>
-                	</c:when>
-                	<c:otherwise>
-                		<li>没有相关数据</li>
-                	</c:otherwise>
-                	</c:choose>
+	                	</c:if>
                 </ul>
-            </div>
+             </div>
+             </c:forEach>
+             </c:when>
+        </c:choose>
         </div>
     </div>	
     <!-- end of sidebar -->
@@ -79,23 +80,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				addTab(title,url,iconCls,iframe);
 			});	
 		})
-		
-		/**
-		* Name 载入树形菜单 
-		*/
-		$('#wu-side-tree').tree({
-			url:'temp/menu.php',
-			cache:false,
-			onClick:function(node){
-				var url = node.attributes['url'];
-				if(url==null || url == ""){
-					return false;
-				}
-				else{
-					addTab(node.text, url, '', node.attributes['iframe']);
-				}
-			}
-		});
 		
 		/**
 		* Name 选项卡初始化
@@ -158,6 +142,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var index = tabPanel.tabs('getTabIndex', tab);
 				tabPanel.tabs('close', index);
 			}
+		}
+		
+		
+		$(document).ready(function(){
+			alert('测试');			
+			doLoadTree();
+		});
+		
+		function doLoadTree(){
+			$.ajax({
+				url : "loadMenu.do",
+				async : true,
+				datatype : "json",
+				type : "get",
+				contentType : "application/json",
+				success : function(data){
+					var data = JSON.parse(data);
+					alert(data);
+					var item;
+					$.each(
+							data,
+							function(i,result){
+								item = "<div title='"+result['name']+"' iconCls='icon-search' style='padding:5px;'>"+  	
+				    			"<ul class='easyui-tree wu-side-tree'>"+
+				    			"<li iconCls='icon-search'>"+
+			                	"<a href='#' data-icon='icon-chart-organisation' data-link='#' iframe='0'>"+
+			                	result['subMenu']['name']+"</a></li></ul></div>";
+			                	$(".easyui-accordion").append(item);
+					});
+				}
+			});
 		}
 	</script>
 </body>

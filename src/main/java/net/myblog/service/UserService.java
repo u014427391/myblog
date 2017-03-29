@@ -38,35 +38,35 @@ public class UserService {
 	 * @param username
 	 * @return
 	 */
-//	public Set<String> getRoles(String username){
-//		User user = userRepository.findByUsername(username);
-//		Set<Role> roles = user.getRoles();
-//		//创建一个HashSet来存放用户角色信息
-//		Set<String> roleStrs = new HashSet<String>();
-//		for(Role r:roles){
-//			roleStrs.add(r.getRole());
-//		}
-//		return roleStrs;
-//	}
+	public Set<String> getRoles(String username){
+		User user = userRepository.findByUsername(username);
+		Set<Role> roles = user.getRoles();
+		//创建一个HashSet来存放用户角色信息
+		Set<String> roleStrs = new HashSet<String>();
+		for(Role r:roles){
+			roleStrs.add(r.getRole());
+		}
+		return roleStrs;
+	}
 	
 	/**
 	 * 
 	 * @param username
 	 * @return
 	 */
-//	public Set<String> getPermissions(String username){
-//		User user = userRepository.findByUsername(username);
-//		Set<Role> roles = user.getRoles();
-//		//创建一个HashSet来存放角色权限信息
-//		Set<String> permissionStrs = new HashSet<String>();
-//		for(Role r:roles){
-//			for(Permission p:r.getPermissions())
-//				for(Operation ope:p.getOperations()){
-//					permissionStrs.add(ope.getOperation());
-//				}
-//		}
-//		return permissionStrs;
-//	}
+	public Set<String> getPermissions(String username){
+		User user = userRepository.findByUsername(username);
+		Set<Role> roles = user.getRoles();
+		//创建一个HashSet来存放角色权限信息
+		Set<String> permissionStrs = new HashSet<String>();
+		for(Role r:roles){
+			for(Permission p:r.getPermissions())
+				for(Operation ope:p.getOperations()){
+					permissionStrs.add(ope.getOperation());
+				}
+		}
+		return permissionStrs;
+	}
 	
 	@Transactional(readOnly=true)
 	public User findByUsername(String username){

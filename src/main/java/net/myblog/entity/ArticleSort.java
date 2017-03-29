@@ -14,19 +14,13 @@ import javax.persistence.Table;
 @Entity
 public class ArticleSort {
 
-	/**
-	 * 文章栏目Id
-	 */
+	/** 文章栏目Id**/
 	private int typeId;
 	
-	/**
-	 * 栏目名称
-	 */
+	/** 栏目名称**/
 	private String name;
 	
-	/**
-	 * 用户Id
-	 */
+	/** 用户Id**/
 	//private int userId;
 
 	@GeneratedValue

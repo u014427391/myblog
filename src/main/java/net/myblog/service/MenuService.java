@@ -22,5 +22,23 @@ public class MenuService {
 	public List<Menu> findAll(){
 		return menuRepository.findAll();
 	}
+	
+	/**
+	 * 获取所有的上级菜单
+	 * @return
+	 */
+	@Transactional
+	public List<Menu> findAllParentMenu(){
+		return menuRepository.findAllParentMenu();
+	}
+	
+	/**
+	 * 通过上级Id获取二级菜单
+	 * @param id
+	 * @return
+	 */
+	public List<Menu> findSubMenuById(int id){
+		return menuRepository.findSubMenuByParentId(id);
+	}
 
 }

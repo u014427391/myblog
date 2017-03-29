@@ -20,30 +20,31 @@ import javax.persistence.Transient;
 @Entity
 public class Menu implements Serializable {
 
-	/**
-	 * 菜单Id
-	 */
+	/** 菜单Id**/
 	private int menuId;
 	
-	/**
-	 * 菜单名称
-	 */
+	/** 标志**/
+	private String identity;
+	
+	/** 上级Id**/
+	private int parentId;
+	
+	/** 菜单名称**/
 	private String name;
 	
-	/**
-	 * 菜单图标
-	 */
+	/** 菜单图标**/
 	private String menuIcon;
 	
-	/**
-	 * 菜单URL
-	 */
+	/** 菜单URL**/
 	private String menuUrl;
 	
-	/**
-	 * 菜单类型
-	 */
+	/** 菜单类型**/
 	private String menuType;
+	
+	/** 菜单排序**/
+	private String menuOrder;
+	
+	private String target;
 	
 	private Menu parentMenu;
 	
@@ -67,6 +68,24 @@ public class Menu implements Serializable {
 		this.menuId = menuId;
 	}   
 	
+	@Column(length=100)
+	public String getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+
+	@Column(length=100)
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+
 	@Column(length=100)
 	public String getName() {
 		return this.name;
@@ -101,6 +120,24 @@ public class Menu implements Serializable {
 
 	public void setMenuType(String menuType) {
 		this.menuType = menuType;
+	}
+
+	@Column(length=10)
+	public String getMenuOrder() {
+		return menuOrder;
+	}
+
+	public void setMenuOrder(String menuOrder) {
+		this.menuOrder = menuOrder;
+	}
+
+	@Transient
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
 	}
 
 	@Transient

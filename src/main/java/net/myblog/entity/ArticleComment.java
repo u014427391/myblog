@@ -17,39 +17,25 @@ import javax.persistence.TemporalType;
 @Entity
 public class ArticleComment {
 
-	/**
-	 * 评论Id
-	 */
+	/** 评论Id**/
 	private int commentId;
 	
-	/**
-	 * 评论者Id
-	 */
+	/** 评论者Id**/
 	private int postId;
 	
-	/**
-	 * 博主Id
-	 */
+	/** 博主Id**/
 	private int userId;
 	
-	/**
-	 * 文章Id
-	 */
+	/** 文章Id**/
 	private int articleId;
 	
-	/**
-	 * 评论内容
-	 */
+	/** 评论内容**/
 	private String content;
 	
-	/**
-	 * 回复Id
-	 */
+	/** 回复Id**/
 	private int responseId;
 	
-	/**
-	 * 评论时间
-	 */
+	/** 评论时间**/
 	private Date time;
 
 	@Id

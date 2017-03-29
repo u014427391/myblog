@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import net.myblog.utils.Tools;
 
 /**
- * 权限计算帮助类
+ * 权限计算帮助类(没有使用)
  */
 public class RightsHelper {
 	/**

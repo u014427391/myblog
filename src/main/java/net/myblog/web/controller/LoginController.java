@@ -18,6 +18,7 @@ import net.myblog.entity.User;
 import net.myblog.service.MenuService;
 import net.myblog.service.UserService;
 import net.myblog.utils.Tools;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.shiro.SecurityUtils;
@@ -147,54 +148,40 @@ public class LoginController extends BaseController{
 	@RequestMapping(value="/admin/index")
 	public ModelAndView toMain() throws AuthenticationException{
 		ModelAndView mv = this.getModelAndView();
+		/**获取Shiro管理的Session**/
 		Subject subject = SecurityUtils.getSubject();
 		Session session = subject.getSession();
 		User user = (User)session.getAttribute(Constants.SESSION_USER);
+		
 		if(user != null){
-			
 			Set<Role> roles = user.getRoles();
 			Set<Permission> permissions = new HashSet<Permission>();
 			for(Role r : roles){
 				permissions.addAll(r.getPermissions());
 			}
 			
-			Set<Menu> menus = new HashSet<Menu>();
-			for(Permission p : permissions){
-				menus.add(p.getMenu());
-			}
-			
-			List<Menu> allmenu= new ArrayList<Menu>();
-			if(session.getAttribute(Constants.SESSION_ALLMENU) == null){
-				allmenu = menuService.findAll();
-				for(Menu m:allmenu){
-//					m.setHasMenu(RightsHelper.testRights(rights, m.getMenuId()));
-					if(m.isHasMenu()){
-						List<Menu> subMenuList = m.getSubMenu();
-						for(Menu submenu:subMenuList){
-//							submenu.setHasMenu(RightsHelper.testRights(rights, submenu.getMenuId()));
-						}
-					}
-				}
-				session.setAttribute(Constants.SESSION_ALLMENU, allmenu);
-			}else{
-				allmenu = (List<Menu>)session.getAttribute(Constants.SESSION_ALLMENU);
-			}
-			
+			/**获取用户可以查看的菜单**/
 			List<Menu> menuList = new ArrayList<Menu>();
-			if(session.getAttribute(Constants.SESSION_MENULIST)==null){
-				List<Menu> menuList1 = new ArrayList<Menu>();
-				List<Menu> menuList2 = new ArrayList<Menu>();
-				
-				for(Menu mu:allmenu){
-					if(mu.getMenuId()==1){
-						menuList1.add(mu);
-					}else{
-						menuList2.add(mu);
-					}
-				}
-				
+			for(Permission p : permissions){
+				menuList.add(p.getMenu());
 			}
 			
+			List<Menu> menus = new ArrayList<Menu>(); 
+			
+			/**为一级菜单添加二级菜单**/
+			for(Menu m : menuList){
+				if(m.getMenuType().equals("1")){
+					List<Menu> subMenu = new ArrayList<Menu>();
+					//查询二级菜单
+					subMenu = menuService.findSubMenuById(m.getMenuId());
+					if(subMenu!=null&&subMenu.size()>0){
+						m.setHasMenu(Boolean.TRUE);
+						m.setSubMenu(subMenu);
+						menus.add(m);
+					}
+				}
+			}
+
 			mv.addObject("menus",menus);
 		}else{
 			//会话失效，返回登录界面
@@ -216,8 +203,6 @@ public class LoginController extends BaseController{
 		Session session = sub.getSession();
 		session.removeAttribute(Constants.SESSION_USER);
 		session.removeAttribute(Constants.SESSION_SECURITY_CODE);
-		session.removeAttribute(Constants.SESSION_ALLMENU);
-		session.removeAttribute(Constants.SESSION_MENULIST);
 		/**Shiro销毁登录**/
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
