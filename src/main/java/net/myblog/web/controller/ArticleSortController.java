@@ -33,4 +33,18 @@ public class ArticleSortController extends BaseController{
 		return "myblog/index";
 	}
 	
+	/**
+	 * 获取所有的博客标签(分类)信息到后台管理系统
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/labellist")
+	public String labelList(Model model){
+		List<ArticleSort> articleSorts = articleSortService.findAll();
+		model.addAttribute("articleSorts", articleSorts);
+		return "admin/label/label_list";
+	}
+	
+	
+	
 }

@@ -15,7 +15,7 @@ import net.myblog.service.ArticleService;
 import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
 import net.myblog.service.MenuService;
-import net.myblog.service.WebAdService;
+import net.myblog.service.AdvertisementService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,7 +35,7 @@ public class BlogIndexController extends BaseController{
 	@Autowired
 	FriendlyLinkService friendlyLinkService;
 	@Autowired
-	WebAdService webAdService;
+	AdvertisementService webAdService;
 
 	/**
 	 * 访问博客主页

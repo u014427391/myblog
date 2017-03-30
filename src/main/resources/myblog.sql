@@ -119,19 +119,21 @@ CREATE TABLE `secret_message` (
 DROP TABLE IF EXISTS `sys_menu`;
 
 CREATE TABLE `sys_menu` (
-  `menuId` int(11) NOT NULL AUTO_INCREMENT,
-  `identity` varchar(100) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `menuIcon` varchar(30) DEFAULT NULL,
-  `menuUrl` varchar(100) DEFAULT NULL,
-  `menuType` varchar(10) DEFAULT NULL,
+  `menuId` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜单Id',
+  `identity` varchar(100) DEFAULT NULL COMMENT '标志',
+  `parentId` int(11) DEFAULT NULL COMMENT '上级Id',
+  `name` varchar(100) DEFAULT NULL COMMENT '菜单名称',
+  `menuIcon` varchar(30) DEFAULT NULL COMMENT '菜单图标',
+  `menuUrl` varchar(100) DEFAULT NULL COMMENT '菜单链接',
+  `menuType` varchar(10) DEFAULT NULL COMMENT '菜单类型',
+  `menuOrder` varchar(10) DEFAULT NULL COMMENT '菜单排序',
   PRIMARY KEY (`menuId`),
   UNIQUE KEY `uk` (`identity`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_menu` */
 
-insert  into `sys_menu`(`menuId`,`identity`,`name`,`menuIcon`,`menuUrl`,`menuType`) values (1,'user','用户管理','icon-list-alt','article/listall.do','2'),(2,'role','角色管理','','','1'),(3,'resource','资源管理','','','1'),(4,'operation','操作权限管理','','','1');
+insert  into `sys_menu`(`menuId`,`identity`,`parentId`,`name`,`menuIcon`,`menuUrl`,`menuType`,`menuOrder`) values (1,'user',0,'用户管理','icon-search','#','1','1'),(2,NULL,1,'管理员管理','',NULL,'2','2'),(3,NULL,1,'博客用户','',NULL,'2','3'),(4,NULL,0,'文章管理','icon-bkgl','#','1','4'),(5,NULL,4,'写文章','icon-writeblog',NULL,'2','5'),(6,NULL,4,'文章管理','icon-bkgl',NULL,'2','6'),(7,NULL,0,'系统管理','icon-item','#','1','7'),(8,NULL,7,'角色管理',NULL,NULL,'2','8'),(9,NULL,7,'权限管理','icon-search',NULL,'2','9'),(10,NULL,7,'菜单管理',NULL,NULL,'2','10'),(11,NULL,0,'博客配置','icon-bkgl','#','1','11'),(12,NULL,11,'链接管理','icon-link','link/doLoadData.do','2','12'),(13,NULL,11,'标签管理','icon-bklb',NULL,'2','13'),(14,NULL,11,'广告管理',NULL,NULL,'2','14');
 
 /*Table structure for table `sys_operation` */
 
@@ -166,7 +168,7 @@ CREATE TABLE `sys_permission` (
 
 /*Data for the table `sys_permission` */
 
-insert  into `sys_permission`(`id`,`desc`,`name`,`menuId`) values (1,'用户管理相关权限','用户管理',1),(2,NULL,NULL,2),(3,NULL,NULL,3),(4,NULL,NULL,4),(5,NULL,NULL,3);
+insert  into `sys_permission`(`id`,`desc`,`name`,`menuId`) values (1,'用户管理相关权限','用户管理',1),(2,NULL,NULL,4),(3,NULL,NULL,7),(4,NULL,NULL,11),(5,NULL,NULL,3);
 
 /*Table structure for table `sys_permission_operation` */
 
@@ -183,7 +185,7 @@ CREATE TABLE `sys_permission_operation` (
 
 /*Data for the table `sys_permission_operation` */
 
-insert  into `sys_permission_operation`(`permissionId`,`operationId`) values (1,1),(2,1),(3,1),(4,1),(5,1);
+insert  into `sys_permission_operation`(`permissionId`,`operationId`) values (1,1),(2,2),(3,3);
 
 /*Table structure for table `sys_role` */
 
@@ -193,13 +195,13 @@ CREATE TABLE `sys_role` (
   `roleId` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色Id',
   `name` varchar(100) DEFAULT NULL COMMENT '角色名称',
   `desc` varchar(100) DEFAULT NULL COMMENT '角色描述',
-  `rights` varchar(100) DEFAULT NULL COMMENT '角色标志',
+  `role` varchar(100) DEFAULT NULL COMMENT '角色标志',
   PRIMARY KEY (`roleId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_role` */
 
-insert  into `sys_role`(`roleId`,`name`,`desc`,`rights`) values (1,'拥有所有权限','超级管理员','admin'),(2,'用户管理权限','用户管理员','admin_user'),(3,'角色管理权限','角色管理员','admin_role'),(4,'资源管理权限','资源管理员','admin_resource'),(6,'操作权限管理','操作权限管理员','admin_operation'),(7,'查看系统权限','查看员','checker');
+insert  into `sys_role`(`roleId`,`name`,`desc`,`role`) values (1,'拥有所有权限','超级管理员','admin'),(2,'用户管理权限','用户管理员','admin_user'),(3,'角色管理权限','角色管理员','admin_role'),(4,'资源管理权限','资源管理员','admin_resource'),(6,'操作权限管理','操作权限管理员','admin_operation'),(7,'查看系统权限','查看员','checker');
 
 /*Table structure for table `sys_role_permission` */
 
@@ -236,7 +238,7 @@ CREATE TABLE `sys_user` (
   `imageUrl` varchar(100) DEFAULT NULL COMMENT '头像图片路径',
   `regTime` date NOT NULL COMMENT '注册时间',
   `locked` tinyint(1) DEFAULT NULL COMMENT '账号是否被锁定',
-  `rights` varchar(100) DEFAULT NULL COMMENT '权限',
+  `rights` varchar(100) DEFAULT NULL COMMENT '权限（没有使用）',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_u_1` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

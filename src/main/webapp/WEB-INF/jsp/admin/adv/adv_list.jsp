@@ -19,20 +19,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<thead>
 		<tr>
 			<th field="cb" checkbox="true" align="center"></th>
-			<th field="id" width="30" align="center">链接编号</th>
-			<th field="linkname" width="100" align="center">友情链接名称</th>
-			<th field="linkurl" width="200" align="center">友情链接地址</th> 
+			<th field="id" width="30" align="center">广告编号</th>
+			<th field="title" width="100" align="center">广告标题</th>
+			<th field="desc" width="200" align="center">广告描述</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:choose>
-		<c:when test="${not empty links}">
-		<c:forEach items="${links }" var="l">
+		<c:when test="${not empty list}">
+		<c:forEach items="${list }" var="a">
 		<tr>
 			<td checkbox="true" align="center"></td>
-			<td width="30" align="center">${l.linkId}</td>
-			<td width="100" align="center">${l.linkName }</td>
-			<td width="200" align="center">${l.linkUrl }</td>
+			<td width="30" align="center">${a.adId}</td>
+			<td width="100" align="center">${a.adTitle }</td>
+			<td width="200" align="center">${a.adDesc }</td>
 		</tr>
 		</c:forEach>
 		</c:when>
@@ -55,20 +55,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<form id="fm" method="post">
 		<table cellspacing="8px">
 			<tr>
-				<td>友情链接名称</td>
+				<td>广告标题</td>
 				<td>
-					<input type="text" id="linkname" name="linkname" class="easyui-validatebox" required="true">
+					<input type="text" id="title" name="title" class="easyui-validatebox" required="true">
 				</td>
 			</tr>
 			<tr>
-				<td>友情链接地址</td>
+				<td>广告描述</td>
 				<td>
-					<input type="text" id="linkurl" name="linkurl" class="easyui-validatebox" 
-						validtype="url" required="true" style="width:250px">
+					<input type="text" id="title" name="title"  class="easyui-validatebox" required="true">
 				</td>
 			</tr>
 			<tr>
-				<td>友情链接编号</td>
+				<td>广告编号</td>
 				<td>
 					<input type="text" id="order" name="order" class="easyui-numberbox" required="true" 
 						style="width:60px">&nbsp;
