@@ -18,7 +18,7 @@
 		<class>net.myblog.entity.SecretMessage</class>
 		<class>net.myblog.entity.User</class>
 		<class>net.myblog.entity.UserAttention</class>
-		<class>net.myblog.entity.WebAd</class>
+		<class>net.myblog.entity.Advertisement</class>
 	<!-- 
 		配置二级缓存的策略 
 		ALL：所有的实体类都被缓存

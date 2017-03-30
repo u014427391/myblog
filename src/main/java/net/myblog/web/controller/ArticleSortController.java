@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2017年3月7日
  */
 @Controller
-@RequestMapping(name="/articleSort")
+@RequestMapping("/articleSort")
 public class ArticleSortController extends BaseController{
 	
 	@Autowired ArticleSortService articleSortService;
@@ -26,7 +26,7 @@ public class ArticleSortController extends BaseController{
 	 * 获取所有的博客标签(分类)信息
 	 * @return
 	 */
-	@RequestMapping(name="/listAll")
+	@RequestMapping("/listAll")
 	public String listAllSort(Model model){
 		List<ArticleSort> articleSorts = articleSortService.findAll();
 		model.addAttribute("articleSorts", articleSorts);

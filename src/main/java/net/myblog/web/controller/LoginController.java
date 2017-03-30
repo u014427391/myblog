@@ -73,7 +73,7 @@ public class LoginController extends BaseController{
 	@RequestMapping(value="/login",produces="text/html;charset=UTF-8")
 	public ModelAndView toLogin()throws ClassNotFoundException{
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("admin/login");
+		mv.setViewName("admin/frame/login");
 		return mv;
 	}
 	
@@ -185,9 +185,9 @@ public class LoginController extends BaseController{
 			mv.addObject("menus",menus);
 		}else{
 			//会话失效，返回登录界面
-			mv.setViewName("admin/login");
+			mv.setViewName("admin/frame/login");
 		}
-		mv.setViewName("admin/index");
+		mv.setViewName("admin/frame/index");
 		return mv;
 	}
 	
@@ -207,7 +207,7 @@ public class LoginController extends BaseController{
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
 		/**返回后台系统登录界面**/
-		mv.setViewName("admin/login");
+		mv.setViewName("admin/frame/login");
 		return mv;
 	}
 

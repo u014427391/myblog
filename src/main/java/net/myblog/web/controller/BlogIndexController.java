@@ -10,7 +10,7 @@ import net.myblog.core.Constants;
 import net.myblog.entity.Article;
 import net.myblog.entity.ArticleSort;
 import net.myblog.entity.FriendlyLink;
-import net.myblog.entity.WebAd;
+import net.myblog.entity.Advertisement;
 import net.myblog.service.ArticleService;
 import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
@@ -70,7 +70,7 @@ public class BlogIndexController extends BaseController{
 		}
 		List<ArticleSort> articleSorts = articleSortService.findAll();
 		List<FriendlyLink> links = friendlyLinkService.findAll();
-		List<WebAd> webAds = webAdService.findAll();
+		List<Advertisement> webAds = webAdService.findAll();
 		
 		model.addAttribute("articles", articlePage.getContent());
 		model.addAttribute("pageSize", pageSize);
