@@ -1,4 +1,4 @@
-package net.myblog.web.controller;
+package net.myblog.web.controller.admin;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import net.myblog.entity.ArticleSort;
 import net.myblog.service.ArticleSortService;
+import net.myblog.web.controller.BaseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/articleSort")
-public class ArticleSortController extends BaseController{
+public class ArticleSortAdminController extends BaseController{
 	
 	@Autowired ArticleSortService articleSortService;
 

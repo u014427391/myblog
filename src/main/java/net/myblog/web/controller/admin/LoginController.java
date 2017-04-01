@@ -1,4 +1,4 @@
-package net.myblog.web.controller;
+package net.myblog.web.controller.admin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import net.myblog.entity.User;
 import net.myblog.service.MenuService;
 import net.myblog.service.UserService;
 import net.myblog.utils.Tools;
+import net.myblog.web.controller.BaseController;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 

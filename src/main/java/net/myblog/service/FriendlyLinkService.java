@@ -23,5 +23,17 @@ public class FriendlyLinkService {
 	public List<FriendlyLink> findAll(){
 		return friendlyLinkRepository.findAll();
 	}
+	
+	/**
+	 * 保存友情链接信息
+	 * @param link
+	 */
+	@Transactional
+	public int updateLink(FriendlyLink link){
+		String linkName = link.getLinkName();
+		String linkUrl = link.getLinkUrl();
+		return friendlyLinkRepository.updateFL(linkName, linkUrl);
+	}
+	
 
 }

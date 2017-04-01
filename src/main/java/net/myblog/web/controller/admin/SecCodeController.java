@@ -1,4 +1,4 @@
-package net.myblog.web.controller;
+package net.myblog.web.controller.admin;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,10 +1,11 @@
-package net.myblog.web.controller;
+package net.myblog.web.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import net.myblog.entity.Menu;
 import net.myblog.service.MenuService;
+import net.myblog.web.controller.BaseController;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class MenuController extends BaseController{
+public class MenuAdminController extends BaseController{
 	
 	@Autowired MenuService menuService;
 	

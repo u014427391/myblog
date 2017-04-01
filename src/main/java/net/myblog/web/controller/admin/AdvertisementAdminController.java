@@ -1,9 +1,10 @@
-package net.myblog.web.controller;
+package net.myblog.web.controller.admin;
 
 import java.util.List;
 
 import net.myblog.entity.Advertisement;
 import net.myblog.service.AdvertisementService;
+import net.myblog.web.controller.BaseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/adv")
 @Controller
-public class AdvertisementController extends BaseController{
+public class AdvertisementAdminController extends BaseController{
 
 	@Autowired AdvertisementService advertisementService;
 	

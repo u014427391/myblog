@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>个人博客系统</title>
+<title>Nicky's blog</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath %>plugins/easyui-1.3.4/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>plugins/easyui-1.3.4/themes/icon.css" />
@@ -70,6 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <!-- end of footer --> 
     <script type="text/javascript">
+    
 		$(function(){
 			$('.wu-side-tree a').bind("click",function(){
 				var title = $(this).text();
@@ -80,9 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});	
 		})
 		
-		/**
-		* Name 选项卡初始化
-		*/
+		/** Name 选项卡初始化*/
 		$('#wu-tabs').tabs({
 			tools:[{
 				iconCls:'icon-reload',
@@ -131,9 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		}
 		
-		/**
-		* Name 移除菜单选项
-		*/
+		/** Name 移除菜单选项*/
 		function removeTab(){
 			var tabPanel = $('#wu-tabs');
 			var tab = tabPanel.tabs('getSelected');
@@ -143,35 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		}
 		
-		$(document).ready(function(){
-			alert('测试');			
-			doLoadTree();
-		});
 		
-		function doLoadTree(){
-			$.ajax({
-				url : "loadMenu.do",
-				async : true,
-				datatype : "json",
-				type : "get",
-				contentType : "application/json",
-				success : function(data){
-					var data = JSON.parse(data);
-					alert(data);
-					var item;
-					$.each(
-							data,
-							function(i,result){
-								item = "<div title='"+result['name']+"' iconCls='icon-search' style='padding:5px;'>"+  	
-				    			"<ul class='easyui-tree wu-side-tree'>"+
-				    			"<li iconCls='icon-search'>"+
-			                	"<a href='#' data-icon='icon-chart-organisation' data-link='#' iframe='0'>"+
-			                	result['subMenu']['name']+"</a></li></ul></div>";
-			                	$(".easyui-accordion").append(item);
-					});
-				}
-			});
-		}
 	</script>
 </body>
 </html>

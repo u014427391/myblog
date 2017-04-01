@@ -1,4 +1,4 @@
-package net.myblog.web.controller;
+package net.myblog.web.controller.admin;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +12,7 @@ import net.myblog.entity.FriendlyLink;
 import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
 import net.myblog.service.UserService;
+import net.myblog.web.controller.BaseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping(value="/user")
-public class UserController extends BaseController{
+public class UserAdminController extends BaseController{
 	
 	@Autowired
 	UserService userService;

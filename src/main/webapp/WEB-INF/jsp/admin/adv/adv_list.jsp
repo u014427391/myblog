@@ -6,16 +6,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<base href="<%=basePath %>">
-<title>博客后台管理系统</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body style="font-family: microsoft yahei">
+<div style="font-family: microsoft yahei">
 <table id="dg" title="友情链接管理" class="easyui-datagrid" fitColumns="true" pagination="true"
-	url="${basePath }link/doLoadData.do" toolbar="#tb">
+	url="${basePath }link/doLoadData.do" toolbar="#atb">
 	<thead>
 		<tr>
 			<th field="cb" checkbox="true" align="center"></th>
@@ -42,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:choose>
 	</tbody>
 </table>
-<div id="tb"> 
+<div id="atb"> 
 	<div>
 		<a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
 		<a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
@@ -82,5 +75,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
 	</div>
 </div>
-</body>
-</html>
+</div>

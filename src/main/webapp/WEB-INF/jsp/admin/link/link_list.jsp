@@ -1,27 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<base href="<%=basePath %>">
-<title>博客后台管理系统</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body style="font-family: microsoft yahei">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div style="margin: 1px; font-family: microsoft yahei">
 <table id="dg" title="友情链接管理" class="easyui-datagrid" fitColumns="true" pagination="true"
-	url="${basePath }link/doLoadData.do" toolbar="#tb">
+	url="admin/link/listLink.do" toolbar="#ltb">
 	<thead>
 		<tr>
 			<th field="cb" checkbox="true" align="center"></th>
-			<th field="id" width="30" align="center">链接编号</th>
+			<th field="id" width="20" align="center">编号</th>
 			<th field="linkname" width="100" align="center">友情链接名称</th>
 			<th field="linkurl" width="200" align="center">友情链接地址</th> 
+			<th field="order" width="50" align="center">友情链接序号</th> 
 		</tr>
 	</thead>
 	<tbody>
@@ -42,9 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:choose>
 	</tbody>
 </table>
-<div id="tb"> 
+<div id="ltb"> 
 	<div>
-		<a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+		<a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
 		<a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		<a href="javascript:openLinkModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>		
 		<a href="javascript:reload()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>		
@@ -68,20 +56,103 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 			<tr>
-				<td>友情链接编号</td>
+				<td>友情链接排序</td>
 				<td>
 					<input type="text" id="order" name="order" class="easyui-numberbox" required="true" 
-						style="width:60px">&nbsp;
+						style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
 				</td>
 			</tr>
 		</table>
 	</form>
 </div>
+
 <div id="dlg-buttons">
 	<div>
 		<a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
 		<a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
 	</div>
 </div>
-</body>
-</html>
+
+<script type="text/javascript">
+
+	var url;
+	
+	/**打开添加友情链接的窗口**/
+	function openLinkAddDialog() {
+		$("#dlg").dialog("open").dialog("setTitle", "添加友情链接信息");
+		url = "link/save.do";
+	}
+	
+	/**打开编辑友情链接信息的窗口**/
+	function openLinkModifyDialog() {
+		var selectedRows = $("#dg").datagrid("getSelections");
+		if(selectedRows.length != 1) {
+			$.messager.alert("系统提示", "请选择一个要修改的友情链接");
+			return;
+		}
+		var row = selectedRows[0];
+		$("#dlg").dialog("open").dialog("setTitle", "修改友情链接信息");
+		$("#fm").form("load", row);//会自动识别name属性，将row中对应的数据，填充到form表单对应的name属性中
+		url = "${pageContext.request.contextPath}/admin/link/save.do?id=" + row.id;
+	}
+	
+	/**保存友情链接**/
+	function saveLink() {
+		$("#fm").form("submit",{
+			url: url,
+			onSubmit: function() {
+				return $(this).form("validate");
+			}, //进行验证，通过才让提交
+			success: function(result) {
+				var result = eval("(" + result + ")"); //将json格式的result转换成js对象
+				if(result.success) {
+					$.messager.alert("系统提示", "友情链接保存成功");
+					closeLinkDialog();
+					$("#dg").datagrid("reload"); //刷新一下
+				} else {
+					$.messager.alert("系统提示", "友情链接保存失败");
+					return;
+				} 
+			}
+		});
+	}
+	
+	/**关闭链接窗口**/
+	function closeLinkDialog() {
+		$("linkname").val(""); //保存成功后将内容置空
+		$("linkurl").val("");
+		$("order").val("");
+		$("#dlg").dialog("close"); //关闭对话框
+	}
+	
+	/**删除友情链接信息**/
+	function deleteLink() {
+		var selectedRows = $("#dg").datagrid("getSelections");
+		if(selectedRows.length == 0) {
+			$.messager.alert("系统提示", "请选择要删除的数据");
+			return;
+		}
+		var idsStr = [];
+		for(var i = 0; i < selectedRows.length; i++) {
+			idsStr.push(selectedRows[i].id);
+		}
+		var ids = idsStr.join(","); //1,2,3,4
+		$.messager.confirm("系统提示", "<font color=red>您确定要删除选中的"+selectedRows.length+"条数据么？</font>", function(r) {
+			if(r) {
+				$.post("${pageContext.request.contextPath}/admin/link/delete.do",
+						{ids: ids}, function(result){
+							if(result.success) {
+								$.messager.alert("系统提示", "数据删除成功！");
+								$("#dg").datagrid("reload");
+							} else {
+								$.messager.alert("系统提示", "数据删除失败！");
+							}
+						}, "json");
+			}
+		});
+	}
+	
+	function reload() {
+		$("#dg").datagrid("reload");
+	}
+</script>
