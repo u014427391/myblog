@@ -31,7 +31,10 @@ public interface FriendlyLinkRepository extends JpaRepository<FriendlyLink,Integ
 	 * @return
 	 */
 	@Modifying
-	@Query("UPDATE FriendlyLink l set l.linkName =: linkname,l.linkUrl =: linkurl ")
-	public int updateFL(@Param("linkname")String linkName,@Param("linkurl")String linkUrl);
+	@Query("UPDATE FriendlyLink l set l.linkName=:linkname,l.linkUrl=:linkurl"
+			+ " where l.linkId=:linkid")
+	public int updateFL(@Param("linkname")String linkName,
+			@Param("linkurl")String linkUrl,@Param("linkid")int linkId);
+	
 	
 }

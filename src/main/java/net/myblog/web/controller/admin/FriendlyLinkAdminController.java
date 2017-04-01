@@ -24,6 +24,11 @@ public class FriendlyLinkAdminController extends BaseController{
 	@Autowired 
 	FriendlyLinkService friendlyLinkService;
 	
+	/**
+	 * 获取所有友情链接信息
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/doLoadData")
 	public String doLoadData(Model model){
 		List<FriendlyLink> list = new ArrayList<FriendlyLink>();
@@ -32,20 +37,34 @@ public class FriendlyLinkAdminController extends BaseController{
 		return "admin/link/link_list";
 	}
 	
+	/**
+	 * 保存友情链接信息
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/save")
 	@ResponseBody
 	public String saveL(HttpServletRequest request){
+		JSONObject obj = new JSONObject();
 		FriendlyLink link = new FriendlyLink();
 		String linkName = request.getParameter("linkName");
 		String linkUrl = request.getParameter("linkUrl");
 		link.setLinkName(linkName);
 		link.setLinkUrl(linkUrl);
-		JSONObject obj = new JSONObject();
-		obj.put("", "");
+		boolean flag = friendlyLinkService.saveLink(link);
+		if(flag){
+			obj.put("result", "success");
+		}else{
+			obj.put("result", "error");
+		}
 		return obj.toString();
 	}
 	
-	
+	/**
+	 * 编辑友情链接信息
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/edit")
 	@ResponseBody
 	public String editL(HttpServletRequest request){

@@ -1,0 +1,70 @@
+@charset "gb2312";
+/* CSS Document */
+body,ul,div,img,h5,h4,h3,h2,h1,p,span,table,figure,i,li{ margin:0; padding:0}
+a:link, a:visited {text-decoration: none; } 
+img{ border:0}
+body{font-size:12px;background:#D0E7E1 url(../images/top.jpg)  50% top scroll no-repeat;color:#5d5d5d; } 
+.blank{ height:5px; overflow:hidden; width:100%; margin:auto; clear:both}
+.article{width:1030px;margin:0 auto;  overflow:auto; }
+header{ padding:40px 0; width:1000px;  margin:auto; }
+header h1{ font-size:36px; text-shadow:#fff 1px 1px 1px; font-family:'Arizonia', cursive;} /* google ÔÚÏß×ÖÌå Arizonia */
+header h1 a{color:#000;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s;}
+header h1 a:hover{ padding-left:20px}
+header p{margin:17px 0 0 0;text-shadow:#000 1px 1px 1px;color:#fff}
+#nav{ width:100%;line-height:40px; height:40px;margin:auto; background:rgba(245,245,245,0.2) }/* navÔ²½Ç±³¾° rgba Í¸Ã÷¶È0.2 */
+#nav ul{ list-style:none; margin:auto; width:1030px}
+#nav ul li{ float:left; width:100px; text-align:center;text-shadow:#333 1px 1px 1px}
+#nav ul li a{ display:block; color:#FFF; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; -ms-transition: all 0.5s;}/* ±³¾°ÑÕÉ«¹ý¶ÉÐ§¹û */
+#nav ul li a:hover{ background:#00ccff; color: #FFF; font-weight:bold; border-radius:50px 0}
+#nav ul li a#nav_current {background: #00ccff;color: #FFF; font-weight:bold; border-radius:50px 0} /* nav¸ßÁÁÏÔÊ¾±³¾°ÑÕÉ« */
+.content{ width:745px; float:left; }/* left form */
+/*ÍÆ¼öÎÄÕÂ */
+.topblog{ overflow:hidden; height:256px}
+.topblog h3{  border-bottom:#FFF 1px solid; width:100%;overflow:hidden; font-size:14px; margin:0 0 10px 0; font-family:"Î¢ÈíÑÅºÚ"}
+.topblog h3 p{ background:#9ACC99; width:180px; height:25px; margin:15px 0 0 10px; line-height:25px; height:25px; color:#fff; text-align:center; box-shadow: #999 4px 5px 1px;}
+.topblog img{ margin-left:10px; clear:left; float:left}
+.topblog ul{ background: rgba(245,245,245,0.6) url(../images/libg.png) no-repeat 15px 15px; border:#dddddd 1px solid;list-style-type:none; line-height:26px; float:right; width:414px }
+.topblog ul li{  text-align:center; border-bottom:#dddddd 1px solid; border-top:#FFF 1px solid; font-family:"Î¢ÈíÑÅºÚ"; }
+.topblog ul li span{ display:block; font-size:12px; color:#999999; font-weight:normal}
+.topblog ul li a{ color:#ef7000; font-size:20px; font-weight:bold; display:block; height:52px;padding:7px 0;-webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s;-ms-transition: all 1s;}
+.topblog ul li a:hover{  background:#fff; }
+/* bloglist index */
+.bloglist{ width:99%; margin:20px 5px 20px 5px;clear:both; overflow:hidden; }
+.bloglist h2{ background: url(../images/libg.png) 10px -294px no-repeat; line-height:29px; height:29px; font-size:14px; color:#3b3b3b; padding:10px 0 10px 40px;}
+.bloglist h2 a{color:#3b3b3b; display:block;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s;-ms-transition: all 0.5s;}
+.bloglist h2 a:hover{cursor:pointer; text-shadow:#fff 1px 1px 1px;padding-left:20px}
+.bloglist ul{ line-height:24px; padding:10px; margin-bottom:20px; background:#F5F5F5;  border-radius:10px}
+.bloglist ul p{ text-indent:2em}
+.bloglist figure{ text-align:center}
+/* Side Right */
+aside{ width:276px; float:right; overflow:hidden;}
+aside.navsidebar nav{ height:150px; margin-top:40px}  /* ²ÊÉ«Ìõ */
+aside nav ul{ list-style-type:none; text-align:center;}
+aside nav ul li{ float:left; width:90px; line-height:74px; height:74px; margin-right:2px}
+aside nav ul li.ab{ background:#FF9A66;}
+aside nav ul li.lt{ background:#99CC33}
+aside nav ul li.js{ background:#9ACC99}
+aside nav ul li.zt{ background:#9A6601}
+aside nav ul li.xc{ background:#FFCC33}
+aside nav ul li.ly{ background:#99CDFF}
+aside nav ul li a{ display:block; color:#FFF;-webkit-transition: all 1s;-moz-transition: all 1s;-ms-transition: all 1s;-o-transition: all 1s;transition: all 1s;- }
+aside nav ul li a:hover{font-weight:bold; color:#FF0;moz-transform:rotate(360deg);-webkit-transform:rotate(360deg); -o-transform:rotate(360deg);-ms-transform:rotate(360deg); }
+.slide{margin:5px 0; width:100%}/* »ÃµÆÆ¬ */
+.slide img{  height:200px}
+.vcard{ margin:10px 0; padding:10px} /* ¸öÈË¼ò½é google vcard */
+.vcard p{ line-height:25px}
+.vcard p a{ color:#099;text-decoration:underline}
+aside h2{  border-bottom:#FFF 1px solid; width:100%;overflow:hidden; font-size:14px; margin:10px 0; font-family:"Î¢ÈíÑÅºÚ"}
+aside h2 p{ background:#CDCC34; width:180px; height:25px; margin:15px 0 0 10px; line-height:25px; height:25px; color:#fff; text-align:center; box-shadow: #999 4px 5px 1px;}
+.news{ padding:10px; list-style:none;}
+.news li{ overflow: hidden;white-space: nowrap;text-overflow: ellipsis; background:url(../images/list.gif) left no-repeat; padding-left:20px}
+.news li a{ color: #666; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; -ms-transition: all 0.5s; display:block;line-height:22px; height:22px}
+.news li a:hover{color:#000; padding-left:20px; }
+/* ·ÖÏí */
+.share h2{ background:url(../images/libg.png) 0 -370px no-repeat; height:30px; line-height:30px;border-bottom:#333 2px solid ; overflow:hidden}
+.share p{ margin:10px; clear:both}
+/* footer */
+#copright{ background:#9ACC99;line-height:40px; height:40px; text-align:center; width:100%;color:#fff; font-size:16px}
+#copright a{color:#fff}
+
+

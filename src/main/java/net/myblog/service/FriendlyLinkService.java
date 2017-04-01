@@ -24,15 +24,24 @@ public class FriendlyLinkService {
 		return friendlyLinkRepository.findAll();
 	}
 	
+	@Transactional
+	public boolean saveLink(FriendlyLink link){
+		if(friendlyLinkRepository.saveAndFlush(link)!=null){
+			return true;
+		}
+		return false;
+	}
+	
 	/**
-	 * 保存友情链接信息
+	 * 修改友情链接信息
 	 * @param link
 	 */
 	@Transactional
 	public int updateLink(FriendlyLink link){
 		String linkName = link.getLinkName();
 		String linkUrl = link.getLinkUrl();
-		return friendlyLinkRepository.updateFL(linkName, linkUrl);
+		int linkId = link.getLinkId();
+		return friendlyLinkRepository.updateFL(linkName, linkUrl, linkId);
 	}
 	
 

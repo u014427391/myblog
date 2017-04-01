@@ -6,10 +6,9 @@
 	<thead>
 		<tr>
 			<th field="cb" checkbox="true" align="center"></th>
-			<th field="id" width="20" align="center">编号</th>
-			<th field="linkname" width="100" align="center">友情链接名称</th>
-			<th field="linkurl" width="200" align="center">友情链接地址</th> 
-			<th field="order" width="50" align="center">友情链接序号</th> 
+			<th field="linkId" width="50" align="center">友情链接编号</th>
+			<th field="linkName" width="100" align="center">友情链接名称</th>
+			<th field="linkUrl" width="200" align="center">友情链接地址</th> 
 		</tr>
 	</thead>
 	<tbody>
@@ -45,20 +44,20 @@
 			<tr>
 				<td>友情链接名称</td>
 				<td>
-					<input type="text" id="linkname" name="linkname" class="easyui-validatebox" required="true">
+					<input type="text" id="linkName" name="linkName" class="easyui-validatebox" required="true">
 				</td>
 			</tr>
 			<tr>
 				<td>友情链接地址</td>
 				<td>
-					<input type="text" id="linkurl" name="linkurl" class="easyui-validatebox" 
+					<input type="text" id="linkUrl" name="linkUrl" class="easyui-validatebox" 
 						validtype="url" required="true" style="width:250px">
 				</td>
 			</tr>
 			<tr>
 				<td>友情链接排序</td>
 				<td>
-					<input type="text" id="order" name="order" class="easyui-numberbox" required="true" 
+					<input type="text" id="linkId" name="linkId" class="easyui-numberbox" required="true" 
 						style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
 				</td>
 			</tr>

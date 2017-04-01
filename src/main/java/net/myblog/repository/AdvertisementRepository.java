@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.QueryHints;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Integer>{
 
-	@Query("from WebAd")
+	@Query("from Advertisement")
 	@QueryHints({@QueryHint(name=org.hibernate.ejb.QueryHints.HINT_CACHEABLE,value="true")})
 	public List<Advertisement> findAll();
 	
