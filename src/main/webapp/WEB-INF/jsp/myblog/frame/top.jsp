@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<header class="clearfix">
+<header>
    <div class="site-search">
        <form id="search" method="post" action="./" role="search">
            <input type="text" name="s" class="text" placeholder="输入关键字搜索" />
