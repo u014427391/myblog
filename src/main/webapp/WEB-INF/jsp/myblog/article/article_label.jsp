@@ -19,56 +19,9 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <style type="text/css">
-.site-search{
-	width:25%;
-	float:right;
-	width:250px;
-	height:50px;
-}
-#search{
-	position:relative;
-	margin-top:15px;
-}
-#search input{
-	padding-right:30px;
-}
-#search button{
-	position:absolute;
-	right:4px;
-	top:2px;
-	border:none;
-	padding:0;
-	width:24px;
-	height:24px;
-	background:url("static/images/search.png") no-repeat scroll right center transparent; 
-	direction:ltr;
-	text-indent:-9999em;
-}
-.sr-only{
-	border:0;
-	height:1px;
-	margin:-1px;
-	overflow:hidden;
-	padding:0;
-	position:absolute;
-	width:1px;
-}
-.sr-only.focusable:active,.sr-only.focusable:focus{
-	clip:auto;
-	height:auto;
-	margin:0;
-	overflow:visible;
-	position:static;
-	width:auto;
-}
-input[type="text"]{
-	padding:5px;
-	border:1px solid #E9E9E9;
-	width:100%;
-	border-radius:2px;
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
+.search-input{ 
+padding-right:20px; 
+background:url("plugins/easyui-1.3.4/themes/icons/search.png") no-repeat scroll right center transparent; 
 }
 </style>
 <link href="static/blog/css/blog.css" rel="stylesheet">
@@ -76,11 +29,11 @@ input[type="text"]{
 <script type="text/javascript" src="static/js/jquery-1.8.3.js"></script>
 </head> 
 <body>
-<%@ include file="top.jsp" %>
+<%@ include file="../frame/top.jsp" %>
 <div class="blank"></div>
 <div class="article">
   <div class="content">
-    <%@ include file="topblog.jsp" %>
+    
     <div class="bloglist">
   <!--article begin-->
       <c:choose>
@@ -94,8 +47,8 @@ input[type="text"]{
 	   	<p>${ar.articleContent }</p>
 	    <p >
 		    <span>${ar.articleTime }</span>
-		    <span>作者：</span>
-		    <span>分类：<a href="/" target="_blank">心得笔记</a></span>
+		    <span>作者：Nicky</span>
+		    <span>分类：<a href="/" target="_blank">笔记</a></span>
 		    <span>阅读(${ar.articleClick })</span>
 		    <span>评论(124)</span>
 	    </p>
@@ -109,8 +62,8 @@ input[type="text"]{
   <!--article end-->
     </div> 
   </div>
-<%@ include file="navsidebar.jsp" %>
+
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="../frame/footer.jsp" %>
 </body>
 </html>

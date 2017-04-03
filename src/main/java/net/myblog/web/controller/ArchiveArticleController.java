@@ -22,7 +22,6 @@ public class ArchiveArticleController extends BaseController{
 	@RequestMapping("/getArchiveArticles")
 	public ModelAndView getArticleByMonth(HttpServletRequest request){
 		String yearMonthString = request.getParameter("yearmonth");
-		System.out.println("month:"+yearMonthString);
 		ModelAndView mv = this.getModelAndView();
 		
 		Date yearmonth = DateUtils.parse("yyyy-MM", yearMonthString);

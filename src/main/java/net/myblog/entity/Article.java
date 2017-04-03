@@ -4,8 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -43,7 +47,9 @@ public class Article {
 	/** 文章类别。0为私有，1为公开，2为仅好友查看**/
 	private int articleType;
 	
-	@GeneratedValue
+	private ArticleSort articleSort;
+	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
 	public int getArticleId() {
 		return articleId;
@@ -123,7 +129,14 @@ public class Article {
 		this.articleType = articleType;
 	}
 
+	@JoinColumn(name="articleId",insertable = false, updatable = false)
+	@ManyToOne(fetch=FetchType.LAZY)
+	public ArticleSort getArticleSort() {
+		return articleSort;
+	}
 
-
+	public void setArticleSort(ArticleSort articleSort) {
+		this.articleSort = articleSort;
+	}
 	
 }

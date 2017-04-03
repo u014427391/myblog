@@ -83,8 +83,6 @@ document.write('<embed src="static/blog/images/bcastr3.swf" wmode="opaque" Flash
 </c:choose>
 </ul>
 <h2><p>近期文章</p></h2>
-&nbsp;&nbsp;<input type="text" class="search-input" placeholder="基于Lucene的搜索..." />
-<br>
 <ul class="news">
   <c:choose>
       <c:when test="${not empty tArticles}">
