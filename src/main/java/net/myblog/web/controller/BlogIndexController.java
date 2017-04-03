@@ -2,20 +2,21 @@ package net.myblog.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.myblog.core.Constants;
+import net.myblog.entity.Advertisement;
 import net.myblog.entity.Article;
 import net.myblog.entity.ArticleSort;
 import net.myblog.entity.FriendlyLink;
-import net.myblog.entity.Advertisement;
+import net.myblog.service.AdvertisementService;
 import net.myblog.service.ArticleService;
 import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
-import net.myblog.service.MenuService;
-import net.myblog.service.AdvertisementService;
+import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -56,6 +57,8 @@ public class BlogIndexController extends BaseController{
 		List<Article> tArticles = articleService.findOrderByArticleTime(1, Constants.PAGE_SIZE,Direction.ASC,"articleTime");
 		List<Article> articlesTemp = articleService.findSupportArticle();
 		List<Article> supportArticles = new ArrayList<Article>();
+		
+		
 		int size = articlesTemp.size();
 		if(size>Constants.SORT_SIZE){
 			supportArticles.add(0, articlesTemp.get(0));
@@ -67,7 +70,13 @@ public class BlogIndexController extends BaseController{
 		List<ArticleSort> articleSorts = articleSortService.findAll();
 		List<FriendlyLink> links = friendlyLinkService.findAll();
 		List<Advertisement> webAds = webAdService.findAll();
+		JSONArray advsJson = JSONArray.fromObject(webAds);
+		String result = advsJson.toString();
+		System.out.println(result);
 		
+		//获取归档文章信息
+		List<Object[]> archiveArticles = articleService.findArticleGroupByTime();
+
 		model.addAttribute("articles", articlePage.getContent());
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("totalPage",articlePage.getTotalElements());
@@ -75,8 +84,9 @@ public class BlogIndexController extends BaseController{
 		model.addAttribute("supportArticles", supportArticles);
 		model.addAttribute("articleSorts", articleSorts);
 		model.addAttribute("links",links);
-		model.addAttribute("webAds", webAds);
-		mv.setViewName("myblog/index");
+		model.addAttribute("advsJson", result);
+		model.addAttribute("archiveArticles", archiveArticles);
+		mv.setViewName("myblog/frame/index");
 		return mv;
 	}
 	

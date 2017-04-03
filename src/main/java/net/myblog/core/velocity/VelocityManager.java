@@ -45,7 +45,6 @@ public class VelocityManager {
 		VelocityContext context = new VelocityContext();
 		context.put("basePath", request.getContextPath());
 		context.put("article", article);
-		context.put("typeId", article.getTypeId());
 		context.put("text", text);
 		context.put("createTime", DateUtils.formatDate(article.getArticleTime()));
 		

@@ -43,12 +43,6 @@ public class Article {
 	/** 文章类别。0为私有，1为公开，2为仅好友查看**/
 	private int articleType;
 	
-	/** 栏目Id**/
-	private int typeId;
-	
-	/** 博主Id**/
-	private int userId;
-
 	@GeneratedValue
 	@Id
 	public int getArticleId() {
@@ -129,23 +123,7 @@ public class Article {
 		this.articleType = articleType;
 	}
 
-	@Column(nullable=false)
-	public int getTypeId() {
-		return typeId;
-	}
 
-	public void setTypeId(int typeId) {
-		this.typeId = typeId;
-	}
-
-	@Column(nullable=false)
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	
 }

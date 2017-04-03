@@ -1,11 +1,21 @@
 package net.myblog.core;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+
 /**
  * @description Constants类，项目的基本信息配置
  * @author Nicky
  * @date 2017年3月6日
  */
 public class Constants {
+	
+	//程序默认字符集
+	public static final Charset ENCODING_UTF_8 = StandardCharsets.UTF_8;
+	//定义统一Locale.CHINA,程序中所有和Locale相关操作均默认使用此Locale
+	public static final Locale LOCALE_CHINA = Locale.CHINA;
+	
 	//验证码Session
 	public static final String SESSION_SECURITY_CODE = "sessionSecCode";
 	//用户信息Session
@@ -26,5 +36,5 @@ public class Constants {
 	public static final String URL_LOGIN = "/login.do";			
 	
 	//登录过滤的正则表达式
-	public static final String REGEXP_PATH = ".*/((login)|(logout)|(toblog)|(code)|(plugins)|(upload)|(static)).*";	//不对匹配该值的访问路径拦截（正则）
+	public static final String REGEXP_PATH = ".*/((login)|(logout)|(toblog)|(getArchiveArticles)|(code)|(plugins)|(upload)|(static)).*";	//不对匹配该值的访问路径拦截（正则）
 }

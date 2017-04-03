@@ -37,6 +37,7 @@ public class MenuService {
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	public List<Menu> findSubMenuById(int id){
 		return menuRepository.findSubMenuByParentId(id);
 	}

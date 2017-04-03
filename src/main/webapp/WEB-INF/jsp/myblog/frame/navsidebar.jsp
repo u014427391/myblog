@@ -1,97 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String loadBlogUrl = basePath + "toblog.do?pageNo=";
-%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<base href="<%=basePath %>">
-<title>Nicky's blog</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="Keywords" content="" >
-<meta name="Description" content="" >
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<style type="text/css">
-.search-input{ 
-padding-right:20px; 
-background:url("plugins/easyui-1.3.4/themes/icons/search.png") no-repeat scroll right center transparent; 
-}
-</style>
-<link href="static/blog/css/blog.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<header>
-  <h1><a href="/">Nicky's blog</a></h1>
-  <p>这夏天里流动的风情，是停不住的舞步和唱不完的情歌，当玫瑰花瓣飘飞的那一刻，风会带走所有的想念.......</p>
-</header>
-<div id="nav">
-     <ul>
-       <li><a href="index.html">网站首页</a></li>
-       <li><a href="about.html">关于我</a></li>
-       <li><a href="#">在线论坛</a></li>
-       <li><a href="#">技术探讨</a></li>
-       <li><a href="#">在线工具</a></li>
-       <li><a href="#">我的相册</a></li>
-       <li><a href="#">留言版</a></li>
-     </ul>
-     <script src="static/blog/js/silder.js"></script><!--获取当前页导航 高亮显示标题-->
-</div>
-<div class="blank"></div>
-<div class="article">
-  <div class="content">
-    <div class="topblog">
-      <h3>
-      	<p>推荐文章 New Blog</p>
-      </h3>
-     <img src="static/blog/images/03.jpg" alt="" title="" width="315" height="205">
-      <ul>
-      <c:choose>
-		<c:when test="${not empty supportArticles}">
-			<c:forEach items="${supportArticles }" var="s">
-				<li><a href="/">${s.articleName}<span>${s.articleName}</span></a></li>
-			</c:forEach>			
-		</c:when>
-		<c:otherwise>
-			<li>没有相关数据</li>
-		</c:otherwise>
-      </c:choose>
-      </ul>
-     </div> 
-    <div class="bloglist">
-  <!--article begin-->
-      <c:choose>
-      <c:when test="${not empty articles}">
-      <c:forEach items="${articles}" var="ar" varStatus="art">
-		<ul>
-	    <h2>
-	    <a title="${ar.articleName }" href="/"  target="_blank">
-	    ${ar.articleName }
-	   	</a></h2>
-	   	<p>${ar.articleContent }</p>
-	    <p >
-		    <span>${ar.articleTime }</span>
-		    <span>作者：</span>
-		    <span>分类：<a href="/" target="_blank">心得笔记</a></span>
-		    <span>阅读(${ar.articleClick })</span>
-		    <span>评论(124)</span>
-	    </p>
-	    </ul>
-      </c:forEach>
-      </c:when>
-      <c:otherwise>
-      	<li>没有相关数据</li>
-      </c:otherwise>
-      </c:choose>
-  <!--article end-->
-    </div> 
-  </div>
 <aside class="navsidebar">
    <nav>
       <ul>
@@ -190,9 +99,17 @@ document.write('<embed src="static/blog/images/bcastr3.swf" wmode="opaque" Flash
 </ul>
 <h2><p>文章归档</p></h2>
 <ul class="news">
-  <li><a href="/">2008 年三月</a></li>
-  <li><a href="/">2008 年四月</a></li>
-  <li><a href="/">2008 年六月</a></li>
+  <c:choose>
+	<c:when test="${not empty archiveArticles }">
+		<c:forEach items="${archiveArticles }" var="ac">
+		<li><a href="getArchiveArticles.do?yearmonth=${ac[0]}-${ac[1]}">
+		${ac[0]}年${ac[1]}月(${ac[2] })</a></li>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<li><a href="#">没有相关数据</a></li>
+	</c:otherwise>  
+  </c:choose>
 </ul>
 <h2><p>友情链接</p></h2>
 <ul class="news">
@@ -226,7 +143,3 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <!-- Baidu Button END --></p>
     </div>
 </aside>
-</div>
-<div id="copright">Copyright@ Nicky's blog</a></div>
-</body>
-</html>

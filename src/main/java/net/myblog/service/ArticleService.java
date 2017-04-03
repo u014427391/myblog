@@ -1,5 +1,6 @@
 package net.myblog.service;
 
+import java.util.Date;
 import java.util.List;
 
 import net.myblog.entity.Article;
@@ -8,9 +9,9 @@ import net.myblog.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ArticleService {
@@ -38,6 +39,7 @@ public class ArticleService {
 	 * 			每一页面的页数
 	 * @return
 	 */
+	@Transactional
 	public Page<Article> findAll(int pageNo, int pageSize,Direction dir, String str){
 		PageRequest request = buildPageRequest(pageNo, pageSize, dir, str);
 		Page<Article> articles = articleRepository.findAll(request);
@@ -48,6 +50,7 @@ public class ArticleService {
 	 * 按点击量对文章进行排序
 	 * @return
 	 */
+	@Transactional
 	public List<Article> finyOrderByArticleClick(int num,int size,Direction dir,String str){
 		PageRequest request = buildPageRequest(num, size, dir, str);
 		List<Article> articles = articleRepository.findAll(request).getContent();
@@ -62,27 +65,43 @@ public class ArticleService {
 	 * @param str
 	 * @return
 	 */
+	@Transactional
 	public List<Article> findOrderByArticleTime(int num,int size,Direction dir,String str){
 		PageRequest request = buildPageRequest(num, size, dir, str);
 		List<Article> articles = articleRepository.findAll(request).getContent();
 		return articles;
 	}
 	
-	/**
-	 * 获取站长推荐的文章
-	 * @return
-	 */
-	/**
+	/**获取站长推荐的文章
 	 * @param num
 	 * @param size
 	 * @param dir
 	 * @param str
 	 * @return
 	 */
+	@Transactional
 	public List<Article> findSupportArticle(){
-		//PageRequest request = buildPageRequest(num, size, dir, str);
 		List<Article> articles = articleRepository.findSupportArticle();
 		return articles;
+	}
+	
+	/**
+	 * 文章归档信息获取
+	 * @return
+	 */
+	@Transactional
+	public List<Object[]> findArticleGroupByTime(){
+		return articleRepository.findArticleGroupByTime();
+	}
+	
+	/**
+	 * 按月份获取文章信息
+	 * @param month
+	 * @return
+	 */
+	@Transactional
+	public List<Article> findArticleByMonth(Date month){
+		return articleRepository.findArticleByMonth(month);
 	}
 	
 }

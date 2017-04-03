@@ -12,6 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <base href="<%=basePath %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Nicky's blog</title>
+<!-- 页面logo设置 start-->
+<link rel="icon" type="image/png" href="static/images/logo/logo.png">
+<!-- 页面logo设置 end -->
 <link rel="stylesheet" type="text/css" href="<%=basePath %>plugins/easyui-1.3.4/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>plugins/easyui-1.3.4/themes/icon.css" />
