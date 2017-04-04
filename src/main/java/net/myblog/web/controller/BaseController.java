@@ -2,15 +2,15 @@ package net.myblog.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.myblog.core.logger.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 public class BaseController {
 	
-	protected Logger logger = Logger.getLogger(this.getClass());
+	protected Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	/**
 	 * 得到request对象

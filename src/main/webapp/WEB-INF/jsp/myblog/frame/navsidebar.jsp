@@ -4,12 +4,12 @@
 <aside class="navsidebar">
    <nav>
       <ul>
-       <li class="ab"><a href="#" >关于我</a></li>
-       <li class="lt"><a href="#">在线论坛</a></li>
-       <li class="js"><a href="#">技术探讨</a></li>
-       <li class="zt"><a href="#">在线工具</a></li>
-       <li class="xc"><a href="#">我的相册</a></li>
-       <li class="ly"><a href="#">留言版</a></li>
+       <li class="ab"><a href="javascript:aboutMeTip();" >关于我</a></li>
+       <li class="lt"><a href="javascript:sysTip();">在线论坛</a></li>
+       <li class="js"><a href="javascript:sysTip();">技术探讨</a></li>
+       <li class="zt"><a href="javascript:sysTip();">在线工具</a></li>
+       <li class="xc"><a href="javascript:sysTip();">我的相册</a></li>
+       <li class="ly"><a href="javascript:sysTip();">留言版</a></li>
      </ul>      
     </nav>
     <div class="slide">
@@ -141,3 +141,12 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <!-- Baidu Button END --></p>
     </div>
 </aside>
+<script type="text/javascript">
+	function aboutMeTip(){
+		alert('我的邮箱:nickypm@foxmail.com');
+	}
+	
+	function sysTip(){
+		alert('功能待开发!');		
+	}
+</script>

@@ -205,6 +205,14 @@
 	      	<artifactId>lucene-highlighter</artifactId>
 	      	<version>${lucene.version}</version>
 	    </dependency>
+	    <!-- 注意IKAnalyzer没有maven坐标,请自行添加到本地仓库 -->
+    	<dependency>
+    		<groupId>org.wltea.analyzer</groupId>  
+			<artifactId>IKAnalyzer</artifactId>  
+			<version>2012FF_u1</version>  
+			<scope>system</scope>  
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/IKAnalyzer2012FF_u1.jar</systemPath>
+    	</dependency>
 	    <!-- lucene全文搜素引擎 end -->
 		<!-- log4j start-->
 		<dependency>

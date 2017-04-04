@@ -14,6 +14,21 @@ public class DateUtils {
 		return dateFormat.format(date);
 	}
 	
+	/**
+	 * 日期对象转字符串
+	 * @param date
+	 * @param format
+	 * @return
+	 */
+	public static String formatDate(Date date,String format){
+		String result="";
+		SimpleDateFormat sdf=new SimpleDateFormat(format);
+		if(date!=null){
+			result=sdf.format(date);
+		}
+		return result;
+	}
+	
 	 /**
 	   * 解析日期，注:此处为严格模式解析，即20151809这样的日期会解析错误
 	   * 

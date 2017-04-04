@@ -37,4 +37,7 @@ public class Constants {
 	
 	//登录过滤的正则表达式
 	public static final String REGEXP_PATH = ".*/((login)|(logout)|(toblog)|(getArchiveArticles)|(code)|(plugins)|(upload)|(static)).*";	//不对匹配该值的访问路径拦截（正则）
+
+	//Lucene索引的路径
+	public static final String LUCENE_INDEX_PATH = "D:\\lucene";
 }
