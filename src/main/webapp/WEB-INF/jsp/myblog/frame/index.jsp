@@ -7,7 +7,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String loadBlogUrl = basePath + "toblog.do?pageNo=";
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +22,7 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
 <script type="text/javascript" src="static/js/jquery-1.8.3.js"></script>
 </head> 
 <body>
-<%@ include file="top.jsp" %>
+<%@ include file="top.jsp"%>
 <div class="blank"></div>
 <div class="article">
   <div class="content">

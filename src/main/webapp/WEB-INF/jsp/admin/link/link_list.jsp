@@ -58,7 +58,7 @@
 				<td>友情链接排序</td>
 				<td>
 					<input type="text" id="linkId" name="linkId" class="easyui-numberbox" required="true" 
-						style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
+						style="width:60px">&nbsp;
 				</td>
 			</tr>
 		</table>

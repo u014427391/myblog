@@ -182,7 +182,6 @@ public class LoginController extends BaseController{
 					}
 				}
 			}
-
 			mv.addObject("menus",menus);
 		}else{
 			//会话失效，返回登录界面

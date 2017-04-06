@@ -7,7 +7,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>    
 <div style="font-family: microsoft yahei">
-<table id="dg" title="友情链接管理" class="easyui-datagrid" fitColumns="true" pagination="true"
+<table id="dg" title="广告管理" class="easyui-datagrid" fitColumns="true" pagination="true"
 	url="${basePath }link/doLoadData.do" toolbar="#atb">
 	<thead>
 		<tr>

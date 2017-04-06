@@ -39,10 +39,10 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
 	   	</a></h2>
 	   	<p>${ar.articleContent }</p>
 	    <p >
-		    <span>${ar.articleTime }</span>
+		    <span></span>
 		    <span>作者：Nicky</span>
 		    <span>分类：<a href="/" target="_blank">笔记</a></span>
-		    <span>阅读(${ar.articleClick })</span>
+		    <span>阅读()</span>
 		    <span>评论(124)</span>
 	    </p>
 	    </ul>

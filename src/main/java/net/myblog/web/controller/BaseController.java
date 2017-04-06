@@ -10,8 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class BaseController {
 	
-	protected Logger log = LoggerFactory.getLogger(this.getClass());
-	
 	/**
 	 * 得到request对象
 	 */
@@ -28,14 +26,4 @@ public class BaseController {
 		return new ModelAndView();
 	}
 
-	public static void logBefore(Logger logger, String interfaceName){
-		logger.info("");
-		logger.info("start");
-		logger.info(interfaceName);
-	}
-	
-	public static void logAfter(Logger logger){
-		logger.info("end");
-		logger.info("");
-	}
 }

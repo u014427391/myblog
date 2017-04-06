@@ -32,4 +32,6 @@ public class ArchiveArticleController extends BaseController{
 		mv.setViewName("myblog/article/archive_articles");
 		return mv;
 	}
+	
+	
 }

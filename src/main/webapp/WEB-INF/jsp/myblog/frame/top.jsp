@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript">
-	function getKeyword(){
+<script type="text/javascript" charset="UTF-8">
+	function doSearch(){
 		var keyword = $(".text").val();
-		return keyword;
+		window.location.href="search.do?keyword="+keyword;
 	}
 </script>
 <header>
    <div class="site-search">
-       <form id="search" method="post" action="search.do?keyword='测试'" role="search">
+       <div id="search">
            <input type="text" name="s" class="text" placeholder="输入关键字搜索" />
-           <button type="submit" class="submit">搜索</button>
-       </form>
+           <button type="button" onclick="javascript:doSearch();" class="submit">搜索</button>
+       </div>
    </div>
   <h1>
-  <a href="/">Nicky's blog</a>
+  <a href="toblog.do">Nicky's blog</a>
   </h1>
   <p>
   	这夏天里流动的风情，是停不住的舞步和唱不完的情歌，当玫瑰花瓣飘飞的那一刻，风会带走所有的想念.......
@@ -26,7 +26,7 @@
        <li><a href="toblog.do">网站首页</a></li>
        <li><a href="javascript:aboutMeTip();">关于我</a></li>
        <li><a href="javascript:sysTip();">在线论坛</a></li>
-       <li><a href="javascript:sysTip();">技术探讨</a></li>
+       <li><a href="javascript:sysTi;p ();">技术探讨</a></li>
        <li><a href="javascript:sysTip();">在线工具</a></li>
        <li><a href="javascript:sysTip();">我的相册</a></li>
        <li><a href="javascript:sysTip();">留言版</a></li>
