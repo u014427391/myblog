@@ -17,7 +17,7 @@ Excel表操作：POI(Apache开源)<br>
 全文搜索引擎：Lucene(开源中国搜索功能就是基于全文搜索引擎和IKAnalyzer开发的，不过后台应该有分布式的设计)<br>
 
 前端技术：<br>
-Easyui、Bootstrap下载后台管理系统开发还是很多使用easyui或者Bootstrap框架的<br>
+Easyui、Bootstrap现在后台管理系统开发还是很多使用easyui或者Bootstrap框架的<br>
 Html5、CSS3、Jquery<br>
 
 数据库：MYSQL<br>
