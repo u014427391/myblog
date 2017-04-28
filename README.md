@@ -3,8 +3,10 @@
 开源博客系统项目方案<br>
 【前言】<br>
 项目：一款Github上开源的博客系统项目<br>
-目的：对学到的JavaEE框架、开源组件、前端技术进行应用学习。同时开发完成后写技术博客，开源到Github上获取star和fork(切勿用于商业用途)<br>
+目的：对学到的框架、开源组件、前端技术进行应用学习。同时开发完成后写技术博客，开源到Github上获取star和fork(切勿用于商业用途)<br>
 
+
+## JavaEE技术介绍 ##
 【技术介绍】<br>
 JavaEE后端技术：<br>
 JPA产品：Hibernate JPA(JPA产品还有OpenJPA等)<br>
