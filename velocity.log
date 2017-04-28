@@ -1,8 +1,0 @@
-2017-03-24 10:27:48,562 - ResourceManager : unable to find resource 'article.vm' in any resource loader.
-2017-03-24 10:28:27,518 - ResourceManager : unable to find resource 'article.vm' in any resource loader.
-2017-03-24 10:28:57,981 - ResourceManager : unable to find resource 'vm/article.vm' in any resource loader.
-2017-03-24 10:29:27,772 - ResourceManager : unable to find resource 'vm/article.html' in any resource loader.
-2017-03-24 10:29:41,095 - ResourceManager : unable to find resource 'vm/article.html' in any resource loader.
-2017-03-24 10:43:54,175 - ResourceManager : unable to find resource 'vm/hello.html' in any resource loader.
-2017-03-24 10:52:10,309 - ResourceManager : unable to find resource '/WEB-INF/vm/hello.vm' in any resource loader.
-2017-03-24 13:46:09,289 - ResourceManager : unable to find resource 'vm/article.vm' in any resource loader.

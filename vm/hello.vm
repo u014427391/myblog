@@ -1,7 +1,0 @@
-这是velocity默认的模板加载方式,从文件中加载模板文件
-hellow ${username},
-这是你的信息
-用户密码为:${password}
-年龄为:${age}
-出生地址为:${address}
-个人主页为:<a href='${blog}'>${blog}</a>
