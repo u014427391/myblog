@@ -1,4 +1,4 @@
-package net.myblog.biz.aop;
+package net.myblog.core.logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.alibaba.fastjson.JSON;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 
@@ -55,7 +57,8 @@ public class LogAspect {
 			
 			result = joinPoint.proceed();
 			log.info("=====Controller后置通知开始=====");
-			log.info("返回结果："+JSON.toJSONString(result));
+			JSONArray jsonObj = JSONArray.fromObject(result);
+			log.info("返回结果："+jsonObj.toString());
 			
 		}catch(Exception e){
 			log.error("====Controller全局异常====");
@@ -84,7 +87,8 @@ public class LogAspect {
 		String param ="";
 		if(joinPoint.getArgs()!=null && joinPoint.getArgs().length >0){
 			for(int i = 0; i < joinPoint.getArgs().length ; i++) {
-				param += JSON.toJSONString(joinPoint.getArgs()[i])+";";
+				String args = JSONArray.fromObject(joinPoint.getArgs()[i]).toString();
+				param += args+";";
 			}
 		}
 		try{
