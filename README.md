@@ -41,13 +41,13 @@ Web：一般放JavaEE项目里的controller、filter、interceptor等等类<br>
 ## 【平台功能演示】
 
 博客主页
-![Image text](https://github.com/u014427391/myblog/raw/master/JavaEEBlog/screenshot/博客主页.png)
+![Image text](https://github.com/u014427391/myblog/raw/master/src/screenshot/博客主页.png)
 
 运营平台主页
-![Image text](https://github.com/u014427391/myblog/raw/master/JavaEEBlog/screenshot/运营平台主页.png)
+![Image text](https://github.com/u014427391/myblog/raw/master/src/screenshot/运营平台主页.png)
 
 运营平台登录页面
-![Image text](https://github.com/u014427391/myblog/raw/master/JavaEEBlog/screenshot/运营平台登录页面.png)
+![Image text](https://github.com/u014427391/myblog/raw/master/src/screenshot/运营平台登录页面.png)
 
 
 
