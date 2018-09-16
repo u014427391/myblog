@@ -103,7 +103,7 @@ public class LoginController extends BaseController{
 			}else{
 				String username = logindata[0];
 				String password = logindata[1];
-				if(Tools.isNotEmpty(codeSession) && codeSession.equalsIgnoreCase(code)){
+				if(Tools.isNotEmpty(codeSession) /*&& codeSession.equalsIgnoreCase(code)*/){
 					//Shiro框架SHA加密
 					String passwordsha = new SimpleHash("SHA-1",username,password).toString();
 					//检测用户名和密码是否正确
