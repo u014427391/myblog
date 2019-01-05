@@ -32,7 +32,7 @@ public class LogAspect {
 	
 	private final Logger log = LoggerFactory.getLogger(LogAspect.class);
 
-	@Pointcut("execution(public * net.myblog.service..*.**(..))")
+	@Pointcut("execution(public * net.myblog.service..*.*(..))")
 	public void serviceAspect(){}
 	
 	@Pointcut("execution(public * net.myblog.web.controller..*.*(..))")
