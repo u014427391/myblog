@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Nicky
  * @date 2017年3月7日
  */
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/articleSort")
 public class ArticleSortAdminController extends BaseController{
@@ -24,7 +26,7 @@ public class ArticleSortAdminController extends BaseController{
 	@Autowired ArticleSortService articleSortService;
 
 	/**
-	 * 获取所有的博客标签(分类)信息
+	 * 跳转到博客类别列表页面
 	 * @return
 	 */
 	@RequestMapping("/listAll")
@@ -46,6 +48,15 @@ public class ArticleSortAdminController extends BaseController{
 		return "admin/label/label_list";
 	}
 	
-	
+	/**
+	 * 加载所有的博客类别
+	 * @return
+	 */
+	@RequestMapping(value = "/listArticleCategory" )
+	//@ResponseBody
+	public List<ArticleSort> listArticleCategory() {
+		List<ArticleSort> categoryList = this.articleSortService.findAll();
+		return categoryList;
+	}
 	
 }
