@@ -26,7 +26,7 @@
        <li><a href="toblog.do">网站首页</a></li>
        <li><a href="javascript:aboutMeTip();">关于我</a></li>
        <li><a href="javascript:sysTip();">在线论坛</a></li>
-       <li><a href="javascript:sysTi;p ();">技术探讨</a></li>
+       <li><a href="javascript:sysTip ();">技术探讨</a></li>
        <li><a href="javascript:sysTip();">在线工具</a></li>
        <li><a href="javascript:sysTip();">我的相册</a></li>
        <li><a href="javascript:sysTip();">留言版</a></li>
