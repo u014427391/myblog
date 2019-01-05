@@ -11,18 +11,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath %>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link href="<%=basePath %>/plugins/editormd/css/editormd.min.css"
+<title>Nicky's blog 写文章</title>
+<link rel="icon" type="image/png" href="static/images/logo/logo.png">
+<link href="<%=basePath %>plugins/editormd/css/editormd.min.css"
 	rel="stylesheet" type="text/css" />
-<script type="text/javascript"
-	src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
-<script type="text/javascript"
-	src="<%=basePath %>/plugins/editormd/editormd.min.js"></script>
+<link href="<%=basePath %>static/css/bootstrap.min.css" 
+	rel="stylesheet" type="text/css"  />
+<style type="text/css">
+	#articleTitle{
+		width: 68%;
+		margin-top:15px;
+	}
+	#articleCategory{
+		margin-top:15px;
+		width:10%;
+	}
+	#btnList {
+		position:relative;
+		float:right;
+		margin-top:15px;
+		padding-right:70px;					
+	}
+	
+</style>
 </head>
 <body>
 	<div id="layout">
 		<header>
-		<h1>Simple example</h1>
+			文章标题：<input type="text" id="articleTitle" />
+			类别：
+			<select id="articleCategory" onchange="javascript:categorySelect.init();"></select>
+			<span id="btnList">
+				<button type="button" id="publishArticle" class="btn btn-info">发布文章</button>
+			</span>
 		</header>
 		<div id="test-editormd">
 			<textarea style="display: none;">[TOC]
@@ -59,6 +80,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 ```
 </textarea>
 </div>
+<script type="text/javascript"
+	src="<%=basePath %>static/js/jquery-1.8.3.js"></script>
+<script type="text/javascript"
+	src="<%=basePath %>plugins/editormd/editormd.min.js"></script>
 <script type="text/javascript">
 	var testEditor;
 	
@@ -67,19 +92,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        width   : "90%",
 	        height  : 640,
 	        syncScrolling : "single",
-	        path    : "<%=basePath %>/plugins/editormd/lib/"
+	        path    : "<%=basePath %>plugins/editormd/lib/"
 	    });
-	    
-	    /*
-	    // or
-	    testEditor = editormd({
-	        id      : "test-editormd",
-	        width   : "90%",
-	        height  : 640,
-	        path    : "../lib/"
-	    });
-	    */
+	    categorySelect.init();
 	});
+	
+	var categorySelect = {
+		init: function () {
+			$.ajax({
+                //type: "GET",
+                url: 'articleSort/listArticleCategory.do',
+                //dataType:'json',
+                cache: false,
+                success: function(data){
+                	debugger;
+                	var data = eval(data);
+                    $("#articleCategory").append(data);
+                }
+            });
+		}
+	}
+	
 </script>
 </body>
 </html>

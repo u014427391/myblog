@@ -49,7 +49,7 @@ public class ArticleAdminController extends BaseController{
 	 * 跳转到写文章页面
 	 * @return
 	 */
-	@RequestMapping(value="/toWriteArticle")
+	@RequestMapping(value="/toWriteArticle",method=RequestMethod.GET)
 	public ModelAndView toWriteArticle() {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("admin/article/article_write");
