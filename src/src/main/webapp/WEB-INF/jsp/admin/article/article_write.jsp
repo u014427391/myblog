@@ -80,6 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 ```
 </textarea>
 </div>
+    </div>
 <script type="text/javascript"
 	src="<%=basePath %>static/js/jquery-1.8.3.js"></script>
 <script type="text/javascript"
@@ -100,17 +101,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	var categorySelect = {
 		init: function () {
 			$.ajax({
-                //type: "GET",
+                type: "GET",
                 url: 'articleSort/listArticleCategory.do',
-                //dataType:'json',
+                dataType:'json',
+                //contentType:"application/json",
                 cache: false,
                 success: function(data){
-                	debugger;
-                	var data = eval(data);
-                    $("#articleCategory").append(data);
+                	//debugger;
+                	data = eval(data) ;
+                    categorySelect.buildOption(data);
                 }
             });
-		}
+		},
+		buildOption: function (data) {
+            debugger;
+            var optionStr ="";
+            for(var i=0 ; i < data.length; i ++) {
+                optionStr += "<option value="+data[i].typeId+">";
+                optionStr += data[i].name;
+                optionStr +="</option>";
+            }
+            $("#articleCategory").append(optionStr);
+        }
 	}
 	
 </script>

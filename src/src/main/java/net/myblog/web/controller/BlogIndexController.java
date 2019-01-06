@@ -25,7 +25,6 @@ import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
 import net.myblog.utils.DateUtils;
 import net.myblog.utils.Tools;
-import net.sf.json.JSONArray;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -58,6 +57,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.wltea.analyzer.lucene.IKAnalyzer;
+
+import com.alibaba.fastjson.JSONArray;
 
 @Controller
 public class BlogIndexController extends BaseController{
@@ -109,7 +110,7 @@ public class BlogIndexController extends BaseController{
 		List<FriendlyLink> links = friendlyLinkService.findAll();
 		//获取广告信息
 		List<Advertisement> webAds = webAdService.findAll();
-		JSONArray advsJson = JSONArray.fromObject(webAds);
+		String advsJson = JSONArray.toJSONString(webAds);
 		String result = advsJson.toString();
 		System.out.println(result);
 		

@@ -20,9 +20,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+
 
 
 
@@ -57,8 +56,8 @@ public class LogAspect {
 			
 			result = joinPoint.proceed();
 			log.info("=====Controller后置通知开始=====");
-			JSONArray jsonObj = JSONArray.fromObject(result);
-			log.info("返回结果："+jsonObj.toString());
+			String json = JSONArray.toJSONString(result);
+			log.info("返回结果："+json);
 			
 		}catch(Exception e){
 			log.error("====Controller全局异常====");
@@ -87,7 +86,7 @@ public class LogAspect {
 		String param ="";
 		if(joinPoint.getArgs()!=null && joinPoint.getArgs().length >0){
 			for(int i = 0; i < joinPoint.getArgs().length ; i++) {
-				String args = JSONArray.fromObject(joinPoint.getArgs()[i]).toString();
+				String args = JSONArray.toJSONString(joinPoint.getArgs()[i]).toString();
 				param += args+";";
 			}
 		}

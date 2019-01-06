@@ -2,12 +2,13 @@ package net.myblog.web.controller.admin;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import com.alibaba.fastjson.JSONArray;
 import net.myblog.entity.ArticleSort;
 import net.myblog.service.ArticleSortService;
 import net.myblog.web.controller.BaseController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/articleSort")
 public class ArticleSortAdminController extends BaseController{
-	
+
+	Logger LOGGER = LoggerFactory.getLogger(ArticleSortAdminController.class);
+
 	@Autowired ArticleSortService articleSortService;
 
 	/**
@@ -52,11 +55,17 @@ public class ArticleSortAdminController extends BaseController{
 	 * 加载所有的博客类别
 	 * @return
 	 */
-	@RequestMapping(value = "/listArticleCategory" )
-	//@ResponseBody
-	public List<ArticleSort> listArticleCategory() {
+	@RequestMapping(value = "/listArticleCategory" ,method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String listArticleCategory() {
 		List<ArticleSort> categoryList = this.articleSortService.findAll();
-		return categoryList;
+		LOGGER.info("博客类别:{}"+categoryList.size());
+		//ObjectMapper mapper = new ObjectMapper();
+		for(ArticleSort a : categoryList) {
+			System.out.println(a.getName());
+		}
+		String result = JSONArray.toJSONString(categoryList);
+		return result;
 	}
 	
 }
