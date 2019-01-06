@@ -41,7 +41,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_lg">
 							<i><img height="37" src="static/login/user.png" /></i>
-							</span><input type="text" name="username" id="username" value="" placeholder="请输入用户名" />
+							</span><input type="text" name="username" id="username" value="admin" placeholder="请输入用户名" />
 						</div>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_ly">
 							<i><img height="37" src="static/login/suo.png" /></i>
-							</span><input type="password" name="password" id="password" placeholder="请输入密码" value="" />
+							</span><input type="password" name="password" id="password" placeholder="请输入密码" value="123" />
 						</div>
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 						</div>
 						<div style="float: left;" class="codediv">
 							<input type="text" name="code" id="code" class="login_code"
-								style="height:16px; padding-top:0px;" />
+								style="height:16px; padding-top:0px;" value="123" />
 						</div>
 						<div style="float: left;">
 							<i><img style="height:22px;" id="codeImg" alt="点击更换"
