@@ -9,7 +9,21 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.myblog.biz.RightsHelper;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import net.myblog.core.Constants;
 import net.myblog.entity.Menu;
 import net.myblog.entity.Permission;
@@ -19,20 +33,6 @@ import net.myblog.service.MenuService;
 import net.myblog.service.UserService;
 import net.myblog.utils.Tools;
 import net.myblog.web.controller.BaseController;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @description 登录操作的控制类，使用Shiro框架，做好了登录的权限安全认证，
@@ -42,6 +42,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class LoginController extends BaseController{
+	
+	Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	UserService userService;
@@ -85,11 +87,12 @@ public class LoginController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/logincheck", produces="application/json;charset=UTF-8")
+	@RequestMapping(value="/logincheck")
 	@ResponseBody
 	public String loginCheck(HttpServletRequest request)throws AuthenticationException{
-		JSONObject obj = new JSONObject();
+		JSONObject result = new JSONObject();
 		String errInfo = "";//错误信息
+		LOGGER.info("请求参数：{}"+request.getParameter("LOGINDATA"));
 		String logindata[] = request.getParameter("LOGINDATA").split(",");
 		if(logindata != null && logindata.length == 3){
 			//获取Shiro管理的Session
@@ -137,8 +140,8 @@ public class LoginController extends BaseController{
 				}
 			}
 		}
-		obj.put("result", errInfo);
-		return obj.toString();
+		result.put("result", errInfo);
+		return result.toString();
 	}
 		
 	/**

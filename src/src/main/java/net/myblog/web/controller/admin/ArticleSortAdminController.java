@@ -53,7 +53,7 @@ public class ArticleSortAdminController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/listArticleCategory" )
-	//@ResponseBody
+	@ResponseBody
 	public List<ArticleSort> listArticleCategory() {
 		List<ArticleSort> categoryList = this.articleSortService.findAll();
 		return categoryList;
