@@ -1,21 +1,22 @@
 package net.myblog.web.controller.admin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import net.myblog.entity.FriendlyLink;
-import net.myblog.service.FriendlyLinkService;
-import net.myblog.web.controller.BaseController;
-import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.myblog.entity.FriendlyLink;
+import net.myblog.service.FriendlyLinkService;
+import net.myblog.web.controller.BaseController;
+
 
 @Controller
 @RequestMapping("/link")
@@ -44,8 +45,8 @@ public class FriendlyLinkAdminController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public String saveL(HttpServletRequest request){
-		JSONObject obj = new JSONObject();
+	public Map<String,String> saveL(HttpServletRequest request){
+		Map<String,String> result = new HashMap<String,String>(16);
 		FriendlyLink link = new FriendlyLink();
 		String linkName = request.getParameter("linkName");
 		String linkUrl = request.getParameter("linkUrl");
@@ -53,11 +54,11 @@ public class FriendlyLinkAdminController extends BaseController{
 		link.setLinkUrl(linkUrl);
 		boolean flag = friendlyLinkService.saveLink(link);
 		if(flag){
-			obj.put("result", "success");
+			result.put("result", "success");
 		}else{
-			obj.put("result", "error");
+			result.put("result", "error");
 		}
-		return obj.toString();
+		return result;
 	}
 	
 	/**
@@ -67,7 +68,7 @@ public class FriendlyLinkAdminController extends BaseController{
 	 */
 	@RequestMapping("/edit")
 	@ResponseBody
-	public String editL(HttpServletRequest request){
+	public Map<String,Object> editL(HttpServletRequest request){
 		FriendlyLink link = new FriendlyLink();
 		String linkId = request.getParameter("linkId");
 		String linkName = request.getParameter("linkName");
@@ -76,9 +77,9 @@ public class FriendlyLinkAdminController extends BaseController{
 		link.setLinkName(linkName);
 		link.setLinkUrl(linkUrl);
 		int i = friendlyLinkService.updateLink(link);
-		JSONObject obj = new JSONObject();
-		obj.put("totalNum", i);
-		return obj.toString();
+		Map<String,Object> result = new HashMap<String,Object>(16);
+		result.put("totalNum", i);
+		return result;
 	}
 	
 }

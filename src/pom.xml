@@ -20,15 +20,15 @@
   </properties>
   
   <dependencies>
-  		<!-- servlet start-->
+  		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- servlet end -->
-		<!-- jstl start-->
+
+		<!-- jstl -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
@@ -39,8 +39,8 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
-		<!-- jstl end -->
-		<!-- spring base start-->
+		
+		<!-- spring base-->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-core</artifactId>
@@ -82,8 +82,8 @@
 		    <artifactId>spring-web</artifactId>
 		    <version>${spring.version}</version>
 	    </dependency>
-	    <!-- spring base end -->
-	    <!-- spring aop start-->
+	    
+	    <!-- spring aop -->
 	    <dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-aop</artifactId>
@@ -94,15 +94,15 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.6.10</version>
 		</dependency>
-		<!-- spring aop end -->
-	    <!-- springMVC start-->
+		
+	    <!-- springMVC -->
 	    <dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-webmvc</artifactId>
 		    <version>${spring.version}</version>
 	    </dependency>
-	    <!-- springMVC end -->
-	 	<!-- spring data start-->
+	    
+	 	<!-- spring data -->
 	 	<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -118,8 +118,8 @@
 			<artifactId>spring-data-commons</artifactId>
 			<version>${spring-data-commons.version}</version>
 		</dependency>
-		<!-- spring data end -->
-		<!-- hibernate jpa start-->
+		
+		<!-- hibernate jpa-->
 	    <dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -135,8 +135,8 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<!-- hibernate jpa end -->
-		<!-- hibernate echache start-->
+		
+		<!-- hibernate echache -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -152,22 +152,22 @@
     		<artifactId>hibernate-ehcache</artifactId>
     		<version>${hibernate.version}</version>
     	</dependency>
-    	<!-- hibernate echache end -->
-		<!-- 阿里的连接池druid start-->
+    	
+		<!-- 阿里的连接池druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>${druid.version}</version>
 		</dependency>
-		<!-- 阿里的连接池druid end-->
-  		<!--shiro start-->
+	
+  		<!--shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-all</artifactId>
 			<version>${shiro.version}</version>
-		</dependency> 
-		<!-- shiro end-->
-		<!-- velocity start-->
+		</dependency> 	
+		
+		<!-- velocity -->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
@@ -178,8 +178,9 @@
     		<artifactId>velocity-tools</artifactId>
     		<version>2.0</version>
 		</dependency>
-		<!-- velocity end-->
-		<!-- lucene全文搜素引擎 start-->
+		<!-- velocity -->
+		
+		<!-- lucene全文搜素引擎 -->
 		<dependency>
 	    	<groupId>org.apache.lucene</groupId>
 	      	<artifactId>lucene-core</artifactId>
@@ -213,70 +214,45 @@
 			<scope>system</scope>  
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/IKAnalyzer2012FF_u1.jar</systemPath>
     	</dependency>
-	    <!-- lucene全文搜素引擎 end -->
-		<!-- log4j start-->
+	 
+		<!-- log4j -->
 		<dependency>
 		     <groupId>log4j</groupId>
 		     <artifactId>log4j</artifactId>
 		     <version>${log4j.version}</version>
     	</dependency>
-    	<!-- log4j end-->
-    	<!-- json解析需要的jar start-->
-    	<dependency>
-    		<groupId>commons-beanutils</groupId>
-    		<artifactId>commons-beanutils</artifactId>
-    		<version>1.8.3</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>commons-collections</groupId>
-    		<artifactId>commons-collections</artifactId>
-    		<version>3.2.1</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>net.sf.ezmorph</groupId>
-    		<artifactId>ezmorph</artifactId>
-    		<version>1.0.6</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>commons-lang</groupId>
-    		<artifactId>commons-lang</artifactId>
-    		<version>2.5</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>commons-logging</groupId>
-    		<artifactId>commons-logging</artifactId>
-    		<version>1.2</version>
-    	</dependency>
-    	<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<version>2.4</version>
-			<type>jar</type>
-			<classifier>jdk15</classifier>
-			<scope>compile</scope>
-		</dependency>
-		<!-- json解析需要的jar end -->
-		<!-- poi start-->
+    	<!-- log4j -->
+    	
+    	<!-- fastjson -->
+	    <dependency>
+	      <groupId>com.alibaba</groupId>
+	      <artifactId>fastjson</artifactId>
+	      <version>1.2.35</version>
+	    </dependency>
+		
+		<!-- poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>${poi.version}</version>
 		</dependency>
-		<!-- poi end-->
-		<!-- email start-->
+		
+		
+		<!-- email -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
-		</dependency>
-		<!-- email end-->
-		<!-- mysql start-->
+		</dependency>		
+		
+		<!-- mysql -->
 	    <dependency>
 	      <groupId>mysql</groupId>
 	      <artifactId>mysql-connector-java</artifactId>
 	      <version>${mysql.version}</version>
 	    </dependency>
-	    <!-- mysql end-->
+	  
+	    
 	    <!-- commons -->
 	    <dependency>
 	      <groupId>commons-io</groupId>
@@ -288,7 +264,20 @@
 	      <artifactId>commons-fileupload</artifactId>
 	      <version>1.2.2</version>
 	    </dependency>
-	    <!-- commons -->
+	  
+	    
+	    <!-- jackson -->
+	    <dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+	
   </dependencies>
 
 	<build>

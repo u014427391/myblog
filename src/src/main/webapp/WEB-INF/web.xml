@@ -31,14 +31,14 @@
   </filter-mapping>
   
   <!-- 添加SSI(服务端页面包含技术)配置 start -->
-  <servlet>
+  <!-- <servlet>
   	<servlet-name>ssi</servlet-name>
   	<servlet-class>org.apache.catalina.ssi.SSIServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ssi</servlet-name>
   	<url-pattern>*.shtml</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
   <!-- 添加SSI(服务端页面包含技术)配置 end -->
   
   <!-- 连接池 启用Web监控统计功能 start-->

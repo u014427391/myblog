@@ -11,6 +11,7 @@
 	<mvc:default-servlet-handler/>
 	
 	<context:component-scan base-package="net.myblog.web.controller" />
+	<context:annotation-config />
 
 	<!-- 对静态资源文件的访问  restful-->     
 	<mvc:resources mapping="/static/**" location="/,/static/" />

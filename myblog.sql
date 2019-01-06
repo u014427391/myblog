@@ -133,7 +133,7 @@ CREATE TABLE `sys_menu` (
 
 /*Data for the table `sys_menu` */
 
-insert  into `sys_menu`(`menuId`,`identity`,`parentId`,`name`,`menuIcon`,`menuUrl`,`menuType`,`menuOrder`) values (1,'user',0,'用户管理','icon-search','#','1','1'),(2,NULL,1,'用户信息','',NULL,'2','2'),(3,NULL,0,'文章管理','icon-bkgl','#','1','4'),(4,NULL,3,'写文章','icon-writeblog',NULL,'2','5'),(5,NULL,3,'文章归档','icon-bkgl','article/list.do','2','6'),(6,NULL,0,'系统设置','icon-item','#','1','7'),(7,NULL,6,'菜单编辑','icon-search','menu/getMenus.do','2','10'),(8,NULL,0,'博客配置','icon-bkgl','#','1','11'),(9,NULL,8,'博客链接','icon-link','link/doLoadData.do','2','12'),(10,NULL,8,'博客标签','icon-bklb','articleSort/labellist.do','2','13'),(11,NULL,8,'门户广告',NULL,'adv/advList.do','2','14');
+insert  into `sys_menu`(`menuId`,`identity`,`parentId`,`name`,`menuIcon`,`menuUrl`,`menuType`,`menuOrder`) values (1,'user',0,'用户管理','icon-search','#','1','1'),(2,NULL,1,'用户信息','',NULL,'2','2'),(3,NULL,0,'文章管理','icon-bkgl','#','1','4'),(4,NULL,3,'文章归档','icon-bkgl','article/list.do','2','6'),(5,NULL,0,'系统设置','icon-item','#','1','7'),(6,NULL,5,'菜单编辑','icon-search','menu/getMenus.do','2','10'),(7,NULL,0,'博客配置','icon-bkgl','#','1','11'),(8,NULL,7,'博客链接','icon-link','link/doLoadData.do','2','12'),(9,NULL,7,'博客标签','icon-bklb','articleSort/labellist.do','2','13'),(10,NULL,7,'门户广告',NULL,'adv/advList.do','2','14');
 
 /*Table structure for table `sys_operation` */
 
@@ -168,7 +168,7 @@ CREATE TABLE `sys_permission` (
 
 /*Data for the table `sys_permission` */
 
-insert  into `sys_permission`(`id`,`desc`,`name`,`menuId`) values (1,'用户管理相关权限','用户管理',1),(2,NULL,NULL,3),(3,NULL,NULL,6),(4,NULL,NULL,8),(5,NULL,NULL,3);
+insert  into `sys_permission`(`id`,`desc`,`name`,`menuId`) values (1,'用户管理相关权限','用户管理',1),(2,NULL,NULL,3),(3,NULL,NULL,5),(4,NULL,NULL,7),(5,NULL,NULL,3);
 
 /*Table structure for table `sys_permission_operation` */
 
