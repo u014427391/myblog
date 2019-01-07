@@ -1,25 +1,26 @@
 package net.myblog.web.controller.admin;
 
-import java.util.List;
-
-import com.alibaba.fastjson.JSONArray;
-import net.myblog.entity.ArticleSort;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import net.myblog.entity.dto.ArticleSortDto;
 import net.myblog.service.ArticleSortService;
 import net.myblog.web.controller.BaseController;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
 /**
  * @description 博客标签(类别)信息的控制类
  * @author Nicky
  * @date 2017年3月7日
  */
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/articleSort")
 public class ArticleSortAdminController extends BaseController{
@@ -34,7 +35,7 @@ public class ArticleSortAdminController extends BaseController{
 	 */
 	@RequestMapping("/listAll")
 	public String listAllSort(Model model){
-		List<ArticleSort> articleSorts = articleSortService.findAll();
+		List<ArticleSortDto> articleSorts = articleSortService.findAll();
 		model.addAttribute("articleSorts", articleSorts);
 		return "myblog/index";
 	}
@@ -46,7 +47,7 @@ public class ArticleSortAdminController extends BaseController{
 	 */
 	@RequestMapping("/labellist")
 	public String labelList(Model model){
-		List<ArticleSort> articleSorts = articleSortService.findAll();
+		List<ArticleSortDto> articleSorts = articleSortService.findAll();
 		model.addAttribute("articleSorts", articleSorts);
 		return "admin/label/label_list";
 	}
@@ -58,13 +59,15 @@ public class ArticleSortAdminController extends BaseController{
 	@RequestMapping(value = "/listArticleCategory" ,method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String listArticleCategory() {
-		List<ArticleSort> categoryList = this.articleSortService.findAll();
+		List<ArticleSortDto> categoryList = this.articleSortService.findAll();
 		LOGGER.info("博客类别:{}"+categoryList.size());
 		//ObjectMapper mapper = new ObjectMapper();
+		/*JSONObject obj = new JSONObject();
 		for(ArticleSort a : categoryList) {
-			System.out.println(a.getName());
-		}
-		String result = JSONArray.toJSONString(categoryList);
+			obj.put("typeId", a.getTypeId());
+			obj.put("name", a.getName());
+		}*/
+		String result = JSON.toJSONString(categoryList, SerializerFeature.DisableCircularReferenceDetect);
 		return result;
 	}
 	

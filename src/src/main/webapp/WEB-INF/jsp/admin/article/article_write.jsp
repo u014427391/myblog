@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath %>">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Nicky's blog 写文章</title>
 <link rel="icon" type="image/png" href="static/images/logo/logo.png">
 <link href="<%=basePath %>plugins/editormd/css/editormd.min.css"
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<header>
 			文章标题：<input type="text" id="articleTitle" />
 			类别：
-			<select id="articleCategory" onchange="javascript:categorySelect.init();"></select>
+			<select id="articleCategory"></select>
 			<span id="btnList">
 				<button type="button" id="publishArticle" class="btn btn-info">发布文章</button>
 			</span>
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 type: "GET",
                 url: 'articleSort/listArticleCategory.do',
                 dataType:'json',
-                //contentType:"application/json",
+                contentType:"application/json",
                 cache: false,
                 success: function(data){
                 	//debugger;
