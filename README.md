@@ -50,6 +50,8 @@ Web：一般放JavaEE项目里的controller、filter、interceptor等等类<br>
 ![Image text](https://github.com/u014427391/myblog/raw/master/src/screenshot/运营平台登录页面.png)
 
 
+### 【bug修复记录】
+fixed # $ref循环引用问题：http://www.cnblogs.com/zjrodger/p/4630237.html
 
 ##【附录】
 JPA介绍：JPA(Java 持久化 API)全称 Java Persistence API，是由 Sun 引入的 ORM 规范，
@@ -59,5 +61,3 @@ Spring Data：Spring框架子框架，为了简化构建基于 Spring 框架应�
 Spring Data JPA：Spring Data框架的一个子模块，主要是简化数据操作<br>
 ...
 
-### 【bug修复记录】
-fastjson$ref循环引用问题：http://www.cnblogs.com/zjrodger/p/4630237.html
