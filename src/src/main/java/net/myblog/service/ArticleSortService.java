@@ -1,13 +1,12 @@
 package net.myblog.service;
 
-import java.util.List;
-
-import net.myblog.entity.ArticleSort;
+import net.myblog.entity.dto.ArticleSortDto;
 import net.myblog.repository.ArticleSortRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ArticleSortService {
@@ -19,7 +18,7 @@ public class ArticleSortService {
 	 * @return
 	 */
 	@Transactional(readOnly=true)
-	public List<ArticleSort> findAll(){
+	public List<ArticleSortDto> findAll(){
 		return articleSortRepository.findAll();
 	}
 	
