@@ -1,31 +1,20 @@
 package net.myblog.web.controller;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSONArray;
 import net.myblog.core.Constants;
 import net.myblog.core.lucene.HighlighterBuilder;
 import net.myblog.core.lucene.LuceneSearchEnginer;
 import net.myblog.entity.Advertisement;
 import net.myblog.entity.Article;
-import net.myblog.entity.ArticleSort;
 import net.myblog.entity.FriendlyLink;
+import net.myblog.entity.dto.ArticleSortDto;
 import net.myblog.service.AdvertisementService;
 import net.myblog.service.ArticleService;
 import net.myblog.service.ArticleSortService;
 import net.myblog.service.FriendlyLinkService;
 import net.myblog.utils.DateUtils;
 import net.myblog.utils.Tools;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
@@ -33,12 +22,7 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.BooleanClause;
-import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.apache.lucene.search.highlight.QueryScorer;
@@ -46,19 +30,24 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import com.alibaba.fastjson.JSONArray;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class BlogIndexController extends BaseController{
@@ -105,7 +94,7 @@ public class BlogIndexController extends BaseController{
 			supportArticles = articlesTemp;
 		}
 		//获取文章类别标签
-		List<ArticleSort> articleSorts = articleSortService.findAll();
+		List<ArticleSortDto> articleSorts = articleSortService.findAll();
 		//获取友情链接信息
 		List<FriendlyLink> links = friendlyLinkService.findAll();
 		//获取广告信息
