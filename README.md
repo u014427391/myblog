@@ -59,3 +59,5 @@ Spring Data：Spring框架子框架，为了简化构建基于 Spring 框架应�
 Spring Data JPA：Spring Data框架的一个子模块，主要是简化数据操作<br>
 ...
 
+编程bug修复记录：
+fastjson$ref循环引用问题：http://www.cnblogs.com/zjrodger/p/4630237.html
