@@ -145,7 +145,7 @@
                         //debugger;
 						if ("success"== data.result) {
 						   alert("保存成功!");
-						   window.local.close();
+						   
 						}
                     }
                 });
