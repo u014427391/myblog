@@ -60,11 +60,30 @@ Markdown写文章
 ## 【bug修复记录】
 fastjson$ref循环引用问题：http://www.cnblogs.com/zjrodger/p/4630237.html
 
+## 【博客记录】
+设计模式
+* [单例模式在JDBC数据库连接操作里的应用](https://blog.csdn.net/u014427391/article/details/50867280)
+* [静态代理和动态代理简介](https://blog.csdn.net/u014427391/article/details/75115928)
+* [设计模式之单例模式(创建型)](https://blog.csdn.net/u014427391/article/details/80019048)
+* [设计模式之建造者模式(创建型)](https://blog.csdn.net/u014427391/article/details/80061566)
 
-## 【附录】
+Oracle
+* [Oracle学习笔记整理手册](https://blog.csdn.net/u014427391/article/details/82317376)
+* [Oracle SQL调优记录](https://blog.csdn.net/u014427391/article/details/85414296)
+* [Oracle的nvl函数和nvl2函数](https://blog.csdn.net/u014427391/article/details/84996009)
+* [Oracle递归查询start with connect by prior](https://blog.csdn.net/u014427391/article/details/84996259)
+
+Spring Framework
+* [Spring Data JPA框架实现文章归档](https://blog.csdn.net/u014427391/article/details/68958115)
+
+
+
+## 【附录介绍】
 JPA介绍：JPA(Java 持久化 API)全称 Java Persistence API，是由 Sun 引入的 ORM 规范，
 目的是为了简化现有 Java 应用的对象持久化的开发工作并且整合 ORM 技术。目
 前 Hibernate、OpenJPA、TopLink 都提供了 JPA 的实现<br>
 Spring Data：Spring框架子框架，为了简化构建基于 Spring 框架应用的数据访问计数，包括非关系数据库、Map-Reduce 框架、云数据服务等等；另外也包含对关系数据库的访问支持。<br>
 Spring Data JPA：Spring Data框架的一个子模块，主要是简化数据操作<br>
 ...
+
+
