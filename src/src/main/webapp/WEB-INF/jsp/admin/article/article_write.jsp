@@ -38,15 +38,15 @@
 <body>
 	<div id="layout">
 		<header>
-			文章标题：<input type="text" id="articleTitle" />
+			文章标题：<input type="text" id="articleTitle" value="title" />
 			类别：
 			<select id="articleCategory"></select>
 			<span id="btnList">
-				<button type="button" id="publishArticle" class="btn btn-info">发布文章</button>
+				<button type="button" id="publishArticle" onclick="writeArticle.doSubmit();" class="btn btn-info">发布文章</button>
 			</span>
 		</header>
 		<div id="test-editormd">
-			<textarea style="display: none;">[TOC]
+			<textarea id="articleContent" style="display: none;">[TOC]
 
 #### Disabled options
 
@@ -97,9 +97,10 @@
 	    });
 	    categorySelect.init();
 	});
-	
+
+	/* 文章类别下拉框数据绑定 */
 	var categorySelect = {
-		init: function () {
+		init: function () {//初始化数据
 			$.ajax({
                 type: "GET",
                 url: 'articleSort/listArticleCategory.do',
@@ -113,8 +114,8 @@
                 }
             });
 		},
-		buildOption: function (data) {
-            debugger;
+		buildOption: function (data) {//构建下拉框数据
+            //debugger;
             var optionStr ="";
             for(var i=0 ; i < data.length; i ++) {
                 optionStr += "<option value="+data[i].typeId+">";
@@ -122,6 +123,49 @@
                 optionStr +="</option>";
             }
             $("#articleCategory").append(optionStr);
+        }
+	}
+
+	/* 发送文章*/
+	var writeArticle = {
+	    doSubmit: function () {//提交
+	        if (writeArticle.doCheck()) {
+	            //debugger;
+                var title = $("#articleTitle").val();
+                var content = $("#articleContent").val();
+                var typeId = $("#articleCategory").val();
+                $.ajax({
+                    type: "POST",
+                    url: '<%=basePath %>article/saveOrUpdateArticle.do',
+					data: {'title':title,'content':content,'typeId':typeId},
+                    dataType:'json',
+                    //contentType:"application/json",
+                    cache: false,
+                    success: function(data){
+                        //debugger;
+						if ("success"== data.result) {
+						   alert("保存成功!");
+						   window.local.close();
+						}
+                    }
+                });
+			}
+        },
+		doCheck: function() {//校验
+            //debugger;
+			var title = $("#articleTitle").val();
+			var content = $("#articleContent").val();
+			if (typeof(title) == undefined || title == null || title == "" ) {
+                alert("请填写文章标题!");
+			    return false;
+			}
+
+			if(typeof (content) == undefined || content == null || content == "") {
+                alert("请填写文章内容!");
+                return false;
+			}
+
+			return true;
         }
 	}
 	
