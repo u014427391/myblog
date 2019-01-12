@@ -37,6 +37,9 @@ public class Article {
 	/** 文章类别。0为私有，1为公开，2为仅好友查看**/
 	private int articleType;
 
+	private int typeId;
+
+
 	private ArticleSort articleSort;
 	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -117,6 +120,14 @@ public class Article {
 
 	public void setArticleType(int articleType) {
 		this.articleType = articleType;
+	}
+
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
 	}
 
 	@JoinColumn(name="articleId",insertable = false, updatable = false)

@@ -1,8 +1,8 @@
 package net.myblog.web.controller.admin;
 
+import com.alibaba.fastjson.JSONObject;
 import net.myblog.core.Constants;
 import net.myblog.entity.Article;
-import net.myblog.entity.ArticleSort;
 import net.myblog.service.ArticleService;
 import net.myblog.service.ArticleSortService;
 import net.myblog.web.controller.BaseController;
@@ -75,14 +75,18 @@ public class ArticleAdminController extends BaseController{
 	    article.setArticleName(title);
 	    article.setArticleContent(content);
 	    article.setArticleTime(new Date());
-        ArticleSort articleSort = this.articleSortService.getArticleSort(typeId);
-        article.setArticleSort(articleSort);
+	    article.setTypeId(typeId);
+        //ArticleSort articleSort = this.articleSortService.getArticleSort(typeId);
+        //article.setArticleSort(articleSort);
+		JSONObject result = new JSONObject();
 	    try {
             this.articleService.saveOrUpdateArticle(article);
-            return "success";
+            result.put("result","success");
+            return result.toJSONString();
         } catch (Exception e) {
 	        error("保存文章报错:{}"+e);
-	        return "error";
+			result.put("result","error");
+			return result.toJSONString();
         }
 	}
 	

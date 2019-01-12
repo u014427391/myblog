@@ -130,7 +130,7 @@
 	var writeArticle = {
 	    doSubmit: function () {//提交
 	        if (writeArticle.doCheck()) {
-	            debugger;
+	            //debugger;
                 var title = $("#articleTitle").val();
                 var content = $("#articleContent").val();
                 var typeId = $("#articleCategory").val();
@@ -142,8 +142,8 @@
                     //contentType:"application/json",
                     cache: false,
                     success: function(data){
-                        debugger;
-						if ("success"== data.success) {
+                        //debugger;
+						if ("success"== data.result) {
 						   alert("保存成功!");
 						   window.local.close();
 						}
