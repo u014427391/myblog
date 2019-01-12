@@ -1,12 +1,11 @@
 package net.myblog.web.controller.admin;
 
-import javax.servlet.http.HttpServletRequest;
-
 import net.myblog.core.Constants;
 import net.myblog.entity.Article;
+import net.myblog.entity.ArticleSort;
 import net.myblog.service.ArticleService;
+import net.myblog.service.ArticleSortService;
 import net.myblog.web.controller.BaseController;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
@@ -14,14 +13,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 
 @Controller
 @RequestMapping("/article")
 public class ArticleAdminController extends BaseController{
 
-	@Autowired ArticleService articleService;
+	@Autowired
+    ArticleService articleService;
+	@Autowired
+    ArticleSortService articleSortService;
 	
 	/**
 	 * 跳转到文章列表页面
@@ -54,6 +61,29 @@ public class ArticleAdminController extends BaseController{
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("admin/article/article_write");
 		return mv;
+	}
+
+	/**
+	 * 修改更新文章
+	 */
+	@RequestMapping(value = "/saveOrUpdateArticle", method = RequestMethod.POST)
+	@ResponseBody
+	public String saveOrUpdateArticle (@RequestParam("title")String title , @RequestParam("content")String content,
+        @RequestParam("typeId")String typeIdStr) {
+	    int typeId = Integer.parseInt(typeIdStr);
+	    Article article = new Article();
+	    article.setArticleName(title);
+	    article.setArticleContent(content);
+	    article.setArticleTime(new Date());
+        ArticleSort articleSort = this.articleSortService.getArticleSort(typeId);
+        article.setArticleSort(articleSort);
+	    try {
+            this.articleService.saveOrUpdateArticle(article);
+            return "success";
+        } catch (Exception e) {
+	        error("保存文章报错:{}"+e);
+	        return "error";
+        }
 	}
 	
 }

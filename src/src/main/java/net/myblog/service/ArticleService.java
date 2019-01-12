@@ -1,17 +1,16 @@
 package net.myblog.service;
 
-import java.util.Date;
-import java.util.List;
-
 import net.myblog.entity.Article;
 import net.myblog.repository.ArticleRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class ArticleService {
@@ -72,11 +71,8 @@ public class ArticleService {
 		return articles;
 	}
 	
-	/**获取站长推荐的文章
-	 * @param num
-	 * @param size
-	 * @param dir
-	 * @param str
+	/**
+	 * 获取站长推荐的文章
 	 * @return
 	 */
 	@Transactional
@@ -103,5 +99,14 @@ public class ArticleService {
 	public List<Article> findArticleByMonth(Date month){
 		return articleRepository.findArticleByMonth(month);
 	}
-	
+
+	/**
+	 * 保存文章信息
+	 * @param article
+	 * @return
+	 */
+	@Transactional
+	public Article saveOrUpdateArticle(Article article) {
+		return articleRepository.save(article);
+	}
 }

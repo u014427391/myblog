@@ -1,17 +1,7 @@
 package net.myblog.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * 博客系统文章信息的实体类
@@ -46,7 +36,7 @@ public class Article {
 	
 	/** 文章类别。0为私有，1为公开，2为仅好友查看**/
 	private int articleType;
-	
+
 	private ArticleSort articleSort;
 	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
