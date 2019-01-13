@@ -76,8 +76,6 @@ public class ArticleAdminController extends BaseController{
 	    article.setArticleContent(content);
 	    article.setArticleTime(new Date());
 	    article.setTypeId(typeId);
-        //ArticleSort articleSort = this.articleSortService.getArticleSort(typeId);
-        //article.setArticleSort(articleSort);
 		JSONObject result = new JSONObject();
 	    try {
             this.articleService.saveOrUpdateArticle(article);
