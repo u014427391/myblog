@@ -22,11 +22,11 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
 <script type="text/javascript" src="static/js/jquery-1.8.3.js"></script>
 </head> 
 <body>
-<%@ include file="top.jsp"%>
+<%@ include file="../frame/top.jsp"%>
 <div class="blank"></div>
 <div class="article">
   <div class="content">
-    <%@ include file="topblog.jsp" %>
+
     <div class="bloglist">
   <!--article begin-->
       <c:choose>
@@ -34,7 +34,7 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
       <c:forEach items="${articles}" var="ar" varStatus="art">
 		<ul>
 	    <h2>
-	    <a title="${ar.articleName }" href="article/details"  target="_blank">
+	    <a title="${ar.articleName }" href="/"  target="_blank">
 	    ${ar.articleName }
 	   	</a></h2>
 	   	<p>${ar.articleContent }</p>
@@ -55,8 +55,8 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
   <!--article end-->
     </div> 
   </div>
-<%@ include file="navsidebar.jsp" %>
+<%@ include file="../frame/navsidebar.jsp" %>
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="../frame/footer.jsp" %>
 </body>
 </html>
