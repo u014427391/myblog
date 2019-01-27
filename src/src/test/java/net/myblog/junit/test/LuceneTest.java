@@ -1,19 +1,11 @@
 package net.myblog.junit.test;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
 import net.myblog.core.Constants;
 import net.myblog.core.lucene.HighlighterBuilder;
 import net.myblog.core.lucene.IndexWriterBuilder;
 import net.myblog.entity.Article;
 import net.myblog.utils.DateUtils;
 import net.myblog.utils.Tools;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
@@ -25,34 +17,35 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.BooleanClause;
-import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-import org.springframework.cglib.transform.impl.AddInitTransformer;
 import org.wltea.analyzer.lucene.IKAnalyzer;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class LuceneTest {
 	
 	private static Directory dir;
 	
 	public static void main(String[] args) {
-//		Article a = new Article();
-//		a.setArticleId(123);
-//		a.setArticleName("测试");
-//		a.setArticleContent("测试内容123");
-//		addIndex(a);
+		Article a = new Article();
+		a.setArticleId(123);
+		a.setArticleName("测试");
+		a.setArticleContent("测试内容123");
+		addIndex(a);
 		List<Article> articles = searchArticle("测试");
-		for(Article a:articles){
-			System.out.println(a.getArticleContent());
+		for(Article article:articles){
+			System.out.println(article.getArticleContent());
 		}
 	}
 	
