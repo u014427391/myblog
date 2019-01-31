@@ -34,14 +34,14 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
       <c:forEach items="${articles}" var="ar" varStatus="art">
 		<ul>
 	    <h2>
-	    <a title="${ar.articleName }" href="/"  target="_blank">
+	    <a title="${ar.articleName }" href="article/details.do?articleId=${ar.articleId}"  target="_blank">
 	    ${ar.articleName }
 	   	</a></h2>
 	   	<p>${ar.articleContent }</p>
 	    <p >
 		    <span>${ar.articleTime }</span>
 		    <span>作者：Nicky</span>
-		    <span>分类：<a href="/" target="_blank">笔记</a></span>
+		    <span>分类：<a href="#" target="_blank">笔记</a></span>
 		    <span>阅读(${ar.articleClick })</span>
 		    <span>评论(124)</span>
 	    </p>

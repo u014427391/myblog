@@ -1,9 +1,11 @@
 package net.myblog.web.controller;
 
+import net.myblog.entity.Article;
 import net.myblog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -29,8 +31,10 @@ public class ArticleController extends BaseController{
      * @return
      */
     @RequestMapping(value = "/details")
-    public ModelAndView details() {
+    public ModelAndView details(@RequestParam("articleId")String articleId) {
         ModelAndView mv = this.getModelAndView();
+        Article article = articleService.getArticleInfo(Integer.parseInt(articleId));
+        mv.addObject("article",article);
         mv.setViewName("myblog/article/article_details");
         return mv;
     }
