@@ -87,7 +87,7 @@ document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link
   <c:choose>
       <c:when test="${not empty tArticles}">
          <c:forEach items="${tArticles }" var="acn" varStatus="artcn">
-          <li><a href="#" target="_blank">${acn.articleName}</a></li>
+          <li><a href="article/details.do?articleId=${acn.articleId}" target="_blank">${acn.articleName}</a></li>
          </c:forEach>
       </c:when>
       <c:otherwise>
