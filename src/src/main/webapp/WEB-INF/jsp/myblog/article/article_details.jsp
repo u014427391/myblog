@@ -32,59 +32,59 @@
 <div class="article">
 	<div class="content" id="layer">
 		<div id="test-editormd-view">
-                <textarea id="append-test" style="display:none;" name="test-editormd-markdown-doc">
-				###科学公式 TeX(KaTeX)
+                <textarea id="append-test" style="display:none;">
 
-				$$E=mc^2$$
+###科学公式 TeX(KaTeX)
 
-				行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
+$$E=mc^2$$
 
-				$$\(\sqrt{3x-1}+(1+x)^2\)$$
+行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
 
-				$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
+$$\(\sqrt{3x-1}+(1+x)^2\)$$
 
-				$$X^2 > Y$$
+$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
 
-				#####上标和下标
+$$X^2 > Y$$
 
-				上标：X&lt;sup&gt;2&lt;/sup&gt;
+#####上标和下标
 
-				下标：O&lt;sub&gt;2&lt;/sub&gt;
+上标：X&lt;sup&gt;2&lt;/sup&gt;
 
-				##### 代码块里包含的过滤标签及属性不会被过滤
+下标：O&lt;sub&gt;2&lt;/sub&gt;
 
-				```html
-				&lt;style type="text/style"&gt;
-				body{background:red;}
-				&lt;/style&gt;
+##### 代码块里包含的过滤标签及属性不会被过滤
 
-				&lt;script type="text/javscript"&gt;
-				alert("script");
-				&lt;/script&gt;
+```html
+&lt;style type="text/style"&gt;
+body{background:red;}
+&lt;/style&gt;
 
-				&lt;iframe height=498 width=510 src="http://player.youku.com/embed/XMzA0MzIwMDgw" frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;
-				```
+&lt;script type="text/javscript"&gt;
+alert("script");
+&lt;/script&gt;
 
-				#####Style
+&lt;iframe height=498 width=510 src="http://player.youku.com/embed/XMzA0MzIwMDgw" frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;
+```
 
-				&lt;style&gt;
-				body{background:red;}
-				&lt;/style&gt;
+#####Style
 
-				&lt;style type="text/style"&gt;
-				body{background:red;}
-				&lt;/style&gt;
+&lt;style&gt;
+body{background:red;}
+&lt;/style&gt;
 
-				#####Script
+&lt;style type="text/style"&gt;
+body{background:red;}
+&lt;/style&gt;
 
-				&lt;script&gt;
-				alert("script");
-				&lt;/script&gt;
+#####Script
 
-				&lt;script type="text/javscript"&gt;
-				alert("script");
-				&lt;/script&gt;
-				</textarea>
+&lt;script&gt;
+alert("script");
+&lt;/script&gt;
+
+&lt;script type="text/javscript"&gt;
+alert("script");
+&lt;/script&gt;</textarea>
 		</div>
 	</div>
 </div>
