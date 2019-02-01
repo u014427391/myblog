@@ -32,7 +32,7 @@
 <div class="article">
 	<div class="content" id="layer">
 		<div id="test-editormd-view">
-			<h3>${article.articleName}</h3>
+			<h2>${article.articleName}</h2>
                 <textarea id="append-test" style="display:none;">${article.articleContent}</textarea>
 		</div>
 	</div>
