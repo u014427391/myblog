@@ -47,4 +47,12 @@ public interface ArticleRepository extends PagingAndSortingRepository<Article,In
 	 */
 	@Query("from Article a where a.articleId=:articleId")
 	public Article getArticleInfo(@Param("articleId")int articleId);
+
+	/**
+	 * 根据类别id获取文章列表
+	 * @param typeId
+	 * @return
+	 */
+	@Query("from Article a where a.typeId=:typeId")
+	public List<Article> listArticleByTypeId(@Param("typeId")int typeId);
 }
