@@ -74,7 +74,7 @@ document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link
 <c:choose>
     <c:when test="${not empty articleSorts}">
       <c:forEach items="${articleSorts }" var="a" varStatus="as">
-      	<li><a href="#" target="_blank">${a.name }</a></li>
+      	<li><a href="article/label/toListLabelArticle.do?typeId=${a.typeId}" target="_blank">${a.name }</a></li>
       </c:forEach>
     </c:when>
     <c:otherwise>
@@ -87,7 +87,7 @@ document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link
   <c:choose>
       <c:when test="${not empty tArticles}">
          <c:forEach items="${tArticles }" var="acn" varStatus="artcn">
-          <li><a href="#" target="_blank">${acn.articleName}</a></li>
+          <li><a href="article/details.do?articleId=${acn.articleId}" target="_blank">${acn.articleName}</a></li>
          </c:forEach>
       </c:when>
       <c:otherwise>

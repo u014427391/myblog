@@ -10,7 +10,7 @@
       <c:choose>
 		<c:when test="${not empty supportArticles}">
 			<c:forEach items="${supportArticles }" var="s">
-				<li><a href="/">${s.articleName}<span>${s.articleName}</span></a></li>
+				<li><a href="article/details.do?articleId=${s.articleId}">${s.articleName}<span>${s.articleName}</span></a></li>
 			</c:forEach>			
 		</c:when>
 		<c:otherwise>

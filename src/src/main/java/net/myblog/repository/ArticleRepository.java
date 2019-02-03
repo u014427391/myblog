@@ -39,4 +39,20 @@ public interface ArticleRepository extends PagingAndSortingRepository<Article,In
 	@Query("from Article a where date_format(a.articleTime,'%Y%m')=date_format((:yearmonth),'%Y%m') "
 			+ "order by articleTime desc")
 	public List<Article> findArticleByMonth(@Param("yearmonth")Date yearmonth);
+
+	/**
+	 * 获取文章详情信息
+	 * @param articleId
+	 * @return
+	 */
+	@Query("from Article a where a.articleId=:articleId")
+	public Article getArticleInfo(@Param("articleId")int articleId);
+
+	/**
+	 * 根据类别id获取文章列表
+	 * @param typeId
+	 * @return
+	 */
+	@Query("from Article a where a.typeId=:typeId")
+	public List<Article> listArticleByTypeId(@Param("typeId")int typeId);
 }

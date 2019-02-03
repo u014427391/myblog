@@ -109,4 +109,22 @@ public class ArticleService {
 	public Article saveOrUpdateArticle(Article article) {
 		return articleRepository.save(article);
 	}
+
+	/**
+	 * 获取文章详情信息
+	 * @param articleId
+	 * @return
+	 */
+	public Article getArticleInfo(int articleId) {
+		return articleRepository.getArticleInfo(articleId);
+	}
+
+	/**
+	 * 根据类别id或者文章列表
+	 * @param typeId
+	 * @return
+	 */
+	public List<Article> listArticleByTypeId(int typeId) {
+		return articleRepository.listArticleByTypeId(typeId);
+	}
 }
