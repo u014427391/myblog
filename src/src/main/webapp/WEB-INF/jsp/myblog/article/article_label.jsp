@@ -41,7 +41,7 @@ background:url("plugins/easyui-1.3.4/themes/icons/search.png") no-repeat scroll 
       <c:forEach items="${articles}" var="ar" varStatus="art">
 		<ul>
 	    <h2>
-	    <a title="${ar.articleName }" href="/"  target="_blank">
+	    <a title="${ar.articleName }" href="article/details.do?articleId=${ar.articleId}"  target="_blank">
 	    ${ar.articleName }
 	   	</a></h2>
 	   	<p>${ar.articleContent }</p>

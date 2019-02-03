@@ -23,7 +23,7 @@
 	padding:0;
 	width:24px;
 	height:24px;
-	background:url("static/images/search.png") no-repeat scroll right center transparent; 
+	background:url("static/images/search.png") no-repeat scroll right center transparent;
 	direction:ltr;
 	text-indent:-9999em;
 }

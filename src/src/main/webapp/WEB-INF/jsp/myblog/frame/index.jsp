@@ -34,7 +34,7 @@ String loadBlogUrl = basePath + "toblog.do?pageNo=";
       <c:forEach items="${articles}" var="ar" varStatus="art">
 		<ul>
 	    <h2>
-	    <a title="${ar.articleName }" href="article/details"  target="_blank">
+	    <a title="${ar.articleName }" href="article/details.do?articleId=${ar.articleId}"  target="_blank">
 	    ${ar.articleName }
 	   	</a></h2>
 	   	<p>${ar.articleContent }</p>
