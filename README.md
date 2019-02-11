@@ -106,11 +106,14 @@ fastjson$ref循环引用问题：http://www.cnblogs.com/zjrodger/p/4630237.html
 Oracle
 * [Oracle学习笔记整理手册](https://blog.csdn.net/u014427391/article/details/82317376)
 * [Oracle SQL调优记录](https://blog.csdn.net/u014427391/article/details/85414296)
+* [Oracle sql共享池$sqlarea分析SQL资源使用情况](https://blog.csdn.net/u014427391/article/details/86562755)
 * [Oracle的nvl函数和nvl2函数](https://blog.csdn.net/u014427391/article/details/84996009)
 * [Oracle递归查询start with connect by prior](https://blog.csdn.net/u014427391/article/details/84996259)
 
 Spring Framework
 * [Spring Data JPA框架实现文章归档](https://blog.csdn.net/u014427391/article/details/68958115)
+* [editormd实现文章详情页面预览](https://blog.csdn.net/u014427391/article/details/86815407)
+* [editormd实现Markdown编辑器写文章功能](https://blog.csdn.net/u014427391/article/details/86378811)
 
 
 
