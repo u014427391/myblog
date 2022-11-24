@@ -9,7 +9,7 @@
   	  <spring.version>4.3.17.RELEASE</spring.version>
 	  <spring-data-jpa.version>1.4.2.RELEASE</spring-data-jpa.version>
 	  <spring-data-commons.version>1.6.2.RELEASE</spring-data-commons.version>
-	  <hibernate.version>4.3.8.Final</hibernate.version>
+	  <hibernate.version>5.3.20.Final</hibernate.version>
 	  <shiro.version>1.2.3</shiro.version>
 	  <lucene.version>4.7.2</lucene.version>
 	  <druid.version>1.0.9</druid.version>
